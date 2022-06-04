@@ -27,6 +27,29 @@
 
         <v-container></v-container>
       </v-container>
+      <v-container></v-container>
+      <v-divider></v-divider>
+
+      <v-snackbar
+        :timeout="10000"
+        absolute
+        centered
+        left
+        color="deep-purple accent-4"
+        elevation="24"
+        v-model="snackbar.show"
+      >
+        Found {{ channels.length }} Twitch streamers using Stat-Milestones!
+        <v-btn
+          class="white--text"
+          color="red"
+          elevation="2"
+          x-small
+          @click="snackbar.show = false"
+        >
+          X
+        </v-btn>
+      </v-snackbar>
 
       <v-virtual-scroll height="700" item-height="700" :items="channels">
         <v-row>
@@ -72,6 +95,9 @@ export default {
     this.getData();
   },
   data: () => ({
+    snackbar: {
+      show: false,
+    },
     channels: [],
     show: false,
     loadedChannels: false,
@@ -86,6 +112,7 @@ export default {
         .then((response) => {
           this.channels = response.data.channels;
           this.loadedChannels = true;
+          this.snackbar.show = true;
         });
     },
     visibleChannels() {
