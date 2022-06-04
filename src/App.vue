@@ -3,6 +3,18 @@
     <v-main>
       <v-app-bar color="purple" elevation="4">
         <v-appbar-title> <b> Stat-Milestones </b></v-appbar-title>
+        <v-divider vertical></v-divider>
+        <v-row>
+          <v-col></v-col>
+          <v-btn
+            color="white"
+            :style="'{font:white}'"
+            @click="installExtension"
+          >
+            Install Extension
+            <v-icon right dark> mdi-cloud-upload </v-icon>
+          </v-btn>
+        </v-row>
       </v-app-bar>
 
       <v-container align="center" justify="center" v-if="!loadedChannels">
@@ -27,12 +39,22 @@
       <v-divider></v-divider>
       <Timeline></Timeline>
       <v-footer dark justify="center">
-        <v-container fluid>
-          <v-row align="center" justify="center">
-            <v-col></v-col>
-            <v-divider></v-divider>
-            {{ new Date().getFullYear() }} — <strong>Stat-Milestones</strong>
-          </v-row>
+        <v-container justiy="center">
+          <v-btn
+            color="white"
+            :style="'{font:white}'"
+            @click="installExtension"
+          >
+            Install Extension
+            <v-icon right dark> mdi-cloud-upload </v-icon>
+          </v-btn>
+        </v-container>
+        <v-divider></v-divider>
+        <v-container justiy="center">
+          {{ new Date().getFullYear() }} — <strong>Stat-Milestones</strong>
+        </v-container>
+        <v-container justiy="center">
+          Contact: <strong>jackmcguire35+support@gmail.com</strong>
         </v-container>
       </v-footer>
     </v-main>
@@ -68,6 +90,12 @@ export default {
     },
     visibleChannels() {
       return this.channels.filter((p) => p.isActive).length;
+    },
+    installExtension() {
+      window.open(
+        "https://dashboard.twitch.tv/extensions/e93cf8730nd11z7gepkly2gry5kv8k",
+        "_blank"
+      );
     },
   },
 };
