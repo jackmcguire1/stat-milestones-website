@@ -4,7 +4,7 @@
       <v-app-bar color="purple" elevation="4">
         <v-appbar-title> <b> Stat-Milestones </b></v-appbar-title>
 
-        <v-row align="right" justify="right">
+        <v-row>
           <v-col></v-col>
           <v-btn
             v-for="icon in icons"
@@ -32,13 +32,13 @@
         <v-container></v-container>
       </v-container>
 
-      <v-row>
-        <div v-for="channel in channels">
-          <v-col sm="1">
-            <Profile :channel="channel" :show="show"></Profile
-          ></v-col>
-        </div>
-      </v-row>
+      <v-virtual-scroll height="700" item-height="700" :items="channels">
+        <v-row>
+          <div v-for="channel in channels">
+            <v-col> <Profile :channel="channel" :show="show"></Profile></v-col>
+          </div>
+        </v-row>
+      </v-virtual-scroll>
 
       <v-divider></v-divider>
       <Timeline></Timeline>
@@ -51,21 +51,6 @@
           </v-row>
         </v-container>
       </v-footer>
-
-      <v-snackbar v-model="snackbar.status" :timeout="snackbar.timeout">
-        Successfully loaded {{ channels.length }} Twitch streams!
-
-        <template v-slot:action="{ attrs }">
-          <v-btn
-            color="red"
-            text
-            v-bind="attrs"
-            @click="snackbar.status = false"
-          >
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
     </v-main>
   </v-app>
 </template>
@@ -81,10 +66,6 @@ export default {
     this.getData();
   },
   data: () => ({
-    snackbar: {
-      status: false,
-      timeout: 10000,
-    },
     channels: [],
     show: false,
     loadedChannels: false,
@@ -99,8 +80,10 @@ export default {
         .then((response) => {
           this.channels = response.data.channels;
           this.loadedChannels = true;
-          this.snackbar.status = true;
         });
+    },
+    visibleChannels() {
+      return this.channels.filter((p) => p.isActive).length;
     },
   },
 };

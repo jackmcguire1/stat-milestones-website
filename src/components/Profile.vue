@@ -9,45 +9,55 @@
       width="600"
     >
       <v-container>
-        <v-card class="mx-auto">
-          <v-toolbar color="purple" elevation="4" flat outlined rounded>
-            <v-toolbar-title>
-              <b> {{ channel.broadcaster_name }} </b>
-            </v-toolbar-title>
+        <v-lazy
+          v-model="channel.isActive"
+          :options="{
+            threshold: 1,
+          }"
+          class="fill-height"
+        >
+          <v-card class="mx-auto" hover>
+            <v-toolbar color="purple" elevation="4" flat outlined rounded>
+              <v-toolbar-title>
+                <b> {{ channel.broadcaster_name }} </b>
+              </v-toolbar-title>
 
-            <v-spacer></v-spacer>
-            <v-avatar>
-              <img :src="channel.profile" :alt="channel.broadcaster_id" />
-            </v-avatar>
-          </v-toolbar>
+              <v-spacer></v-spacer>
+              <v-avatar>
+                <img :src="channel.profile" :alt="channel.broadcaster_id" />
+              </v-avatar>
+            </v-toolbar>
 
-          <v-card-title> {{ channel.game_name }} </v-card-title>
+            <v-card-title> {{ channel.game_name }} </v-card-title>
 
-          <v-card-text>
-            <v-divider></v-divider>
-            <v-container>
-              <iframe
-                v-bind:src="
-                  `https://player.twitch.tv/?channel=` +
-                  channel.broadcaster_name +
-                  `&parent=jackmcguire1.github.io&autoplay=false`
-                "
-                allowfullscreen
-                height="300px"
-                width="500px"
+            <v-card-text>
+              <v-divider></v-divider>
+              <v-container>
+                <iframe
+                  @load="load"
+                  v-show="iframe.loaded"
+                  v-bind:src="
+                    `https://player.twitch.tv/?channel=` +
+                    channel.broadcaster_name +
+                    `&parent=jackmcguire1.github.io&autoplay=false`
+                  "
+                  allowfullscreen
+                  height="300px"
+                  width="500px"
+                >
+                </iframe>
+              </v-container>
+              <v-container align="center"> {{ channel.title }}</v-container>
+              <v-divider></v-divider>
+              <v-container> Viewers: {{ channel.viewers }}</v-container>
+              <v-divider></v-divider>
+              <v-container>
+                Twitch Partnership Status:
+                <b>{{ channel.type.toUpperCase() }}</b></v-container
               >
-              </iframe>
-            </v-container>
-            <v-container align="center"> {{ channel.title }}</v-container>
-            <v-divider></v-divider>
-            <v-container> Viewers: {{ channel.viewers }}</v-container>
-            <v-divider></v-divider>
-            <v-container>
-              Twitch Partnership Status:
-              <b>{{ channel.type.toUpperCase() }}</b></v-container
-            >
-          </v-card-text>
-        </v-card>
+            </v-card-text>
+          </v-card>
+        </v-lazy>
       </v-container>
     </v-sheet>
   </v-container>
@@ -57,10 +67,17 @@
 export default {
   name: "Profile",
   data: () => ({
+    iframe: {
+      loaded: false,
+    },
   }),
   props: {
     channel: {},
-    show: Boolean,
+  },
+  methods: {
+    load: function () {
+      this.iframe.loaded = true;
+    },
   },
 };
 </script>
