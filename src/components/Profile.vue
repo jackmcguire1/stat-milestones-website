@@ -33,6 +33,21 @@
             <v-card-text>
               <v-divider></v-divider>
               <v-container>
+                <v-container
+                  align="center"
+                  justify="center"
+                  v-if="!iframe.loaded"
+                >
+                  <v-progress-circular
+                    :size="30"
+                    :width="7"
+                    color="purple"
+                    indeterminate
+                  ></v-progress-circular>
+                </v-container>
+
+                <v-container></v-container>
+
                 <iframe
                   @load="load"
                   v-show="iframe.loaded"
@@ -49,7 +64,7 @@
               </v-container>
               <v-container align="center"> {{ channel.title }}</v-container>
               <v-divider></v-divider>
-              <v-container> Viewers: {{ channel.viewers }}</v-container>
+              <v-container> Profile Views: {{ channel.viewers }}</v-container>
               <v-divider></v-divider>
               <v-container>
                 Twitch Partnership Status:

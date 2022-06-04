@@ -3,22 +3,6 @@
     <v-main>
       <v-app-bar color="purple" elevation="4">
         <v-appbar-title> <b> Stat-Milestones </b></v-appbar-title>
-
-        <v-row>
-          <v-col></v-col>
-          <v-btn
-            v-for="icon in icons"
-            :key="icon"
-            class="mx-4 white--text"
-            icon
-            align="center"
-            justify="center"
-            ><v-divider vertical></v-divider>
-            <v-icon size="24px">
-              {{ icon }}
-            </v-icon>
-          </v-btn>
-        </v-row>
       </v-app-bar>
 
       <v-container align="center" justify="center" v-if="!loadedChannels">
