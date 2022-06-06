@@ -51,6 +51,11 @@
 export default {
   name: "App",
   components: {},
+  methods: {
+    installExtension() {
+        window.open('https://dashboard.twitch.tv/extensions/e93cf8730nd11z7gepkly2gry5kv8k', '_blank');
+    }
+  },
   data() {
     return {
       //

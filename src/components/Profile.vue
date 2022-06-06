@@ -16,10 +16,7 @@
           }"
           class="fill-height"
         >
-          <v-card
-            class="mx-auto"
-            hover
-          >
+          <v-card class="mx-auto" hover>
             <v-toolbar
               :color="channel.configuration.panel_settings.background_colour"
               elevation="4"
@@ -27,25 +24,25 @@
               outlined
               rounded
             >
-              <v-toolbar-title><b :style="
+              <v-toolbar-title
+                ><b
+                  :style="
                     `color:` +
                     channel.configuration.panel_settings.font_colour +
                     ';'
-                  ">
+                  "
+                >
                   {{ channel.broadcaster_name }}
                 </b>
               </v-toolbar-title>
 
-              <v-spacer></v-spacer>
               <v-avatar>
-                <img
-                  :src="channel.profile"
-                  :alt="channel.broadcaster_id"
-                />
+                <img :src="channel.profile" :alt="channel.broadcaster_id" />
               </v-avatar>
             </v-toolbar>
 
-            <v-card-title>{{ channel.game_name }}
+            <v-card-title
+              >{{ channel.game_name }}
               <v-card-subtitle>
                 <v-spacer></v-spacer>
                 <v-spacer></v-spacer>
@@ -87,10 +84,12 @@
                 </iframe>
               </v-container>
               <v-container align="center">
-                <span v-if="
+                <span
+                  v-if="
                     !channel.configuration.motd ||
                     channel.configuration.motd.msg == ''
-                  ">
+                  "
+                >
                   {{ channel.title }}
                 </span>
                 <span v-else>{{ channel.configuration.motd.msg }}</span>
