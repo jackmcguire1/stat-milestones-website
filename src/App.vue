@@ -2,10 +2,15 @@
   <v-app>
     <v-main>
       <v-app-bar color="purple" elevation="4">
-        <v-appbar-title> <b> Stat-Milestones </b></v-appbar-title>
+        <v-appbar-title>  <router-link style="color: white" to="/"> <b> Stat-Milestones </b> </router-link></v-appbar-title>
         <v-divider vertical></v-divider>
         <v-row>
           <v-col></v-col>
+
+           <v-btn color="white" flat>
+            <router-link style="color: white" to="/channels"> Live Twitch Streamers </router-link>
+          </v-btn>
+
           <v-btn
             color="white"
             :style="'{font:white}'"
