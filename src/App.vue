@@ -34,6 +34,7 @@
         :timeout="10000"
         absolute
         centered
+        multiLine
         left
         color="deep-purple accent-4"
         elevation="24"

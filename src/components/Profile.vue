@@ -3,7 +3,7 @@
     <v-sheet
       color="white"
       elevation="14"
-      height="700"
+      height="720"
       outlined
       rounded
       width="600"
@@ -16,19 +16,43 @@
           }"
           class="fill-height"
         >
-          <v-card class="mx-auto" hover>
-            <v-toolbar color="purple" elevation="4" flat outlined rounded>
-              <v-toolbar-title>
-                <b> {{ channel.broadcaster_name }} </b>
+          <v-card
+            class="mx-auto"
+            hover
+          >
+            <v-toolbar
+              :color="channel.configuration.panel_settings.background_colour"
+              elevation="4"
+              flat
+              outlined
+              rounded
+            >
+              <v-toolbar-title><b :style="
+                    `color:` +
+                    channel.configuration.panel_settings.font_colour +
+                    ';'
+                  ">
+                  {{ channel.broadcaster_name }}
+                </b>
               </v-toolbar-title>
 
               <v-spacer></v-spacer>
               <v-avatar>
-                <img :src="channel.profile" :alt="channel.broadcaster_id" />
+                <img
+                  :src="channel.profile"
+                  :alt="channel.broadcaster_id"
+                />
               </v-avatar>
             </v-toolbar>
 
-            <v-card-title> {{ channel.game_name }} </v-card-title>
+            <v-card-title>{{ channel.game_name }}
+              <v-card-subtitle>
+                <v-spacer></v-spacer>
+                <v-spacer></v-spacer>
+                Last Updated:
+                <b>{{ channel.updated_date }}</b>
+              </v-card-subtitle>
+            </v-card-title>
 
             <v-card-text>
               <v-divider></v-divider>
@@ -62,14 +86,22 @@
                 >
                 </iframe>
               </v-container>
-              <v-container align="center"> {{ channel.title }}</v-container>
+              <v-container align="center">
+                <span v-if="
+                    !channel.configuration.motd ||
+                    channel.configuration.motd.msg == ''
+                  ">
+                  {{ channel.title }}
+                </span>
+                <span v-else>{{ channel.configuration.motd.msg }}</span>
+              </v-container>
               <v-divider></v-divider>
-              <v-container> Profile Views: {{ channel.viewers }}</v-container>
+              <v-container> Profile Views: {{ channel.viewers }} </v-container>
               <v-divider></v-divider>
               <v-container>
-                Twitch Partnership Status:
-                <b>{{ channel.type.toUpperCase() }}</b></v-container
-              >
+                Installed Stat-Milestones:
+                <b>{{ channel.created_date }}</b>
+              </v-container>
             </v-card-text>
           </v-card>
         </v-lazy>
@@ -96,5 +128,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>
