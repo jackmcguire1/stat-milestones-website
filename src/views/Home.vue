@@ -31,40 +31,37 @@
   <v-row justify="center">
     <v-col></v-col>
     <v-col>
-      <v-card outlined align="center" justify="center" height="500" width="450">
+      <v-card outlined align="center" justify="center" width="450">
         <v-img :src="heart_logo" height="250" width="450"></v-img>
 
         <v-toolbar rounded color="purple">
           <v-toolbar-title color="white">Followers</v-toolbar-title>
         </v-toolbar>
 
-        <v-card-title>
-          Track the progress of your desired amount of Twitch Followers
-        </v-card-title>
+        <v-card-title justify="center">
+          <v-container justify="center"
+            >Track your Twitch Followers
+          </v-container></v-card-title
+        >
       </v-card>
     </v-col>
     <v-col>
       <v-col>
-        <v-card
-          outlined
-          align="center"
-          justify="center"
-          height="500"
-          width="450"
-        >
+        <v-card outlined align="center" justify="center" width="450">
           <v-img :src="twitch_subscribers_logo"></v-img>
 
           <v-toolbar rounded color="purple">
             <v-toolbar-title color="white">Subscribers</v-toolbar-title>
           </v-toolbar>
 
-          <v-card-title>
-            Track the progress of your desired amount of Twitch Subscribers
-          </v-card-title>
+          <v-card-title justify="center">
+            <v-container justify="center"
+              >Track your Twitch Subscribers
+            </v-container></v-card-title
+          >
         </v-card>
       </v-col>
-      ></v-col
-    >
+    </v-col>
     <v-col></v-col>
   </v-row>
   <v-row></v-row>
@@ -72,39 +69,60 @@
   <v-row justify="center">
     <v-col></v-col>
     <v-col>
-      <v-card outlined align="center" justify="center" height="500" width="450">
+      <v-card outlined align="center" justify="center" width="450">
         <v-img :src="twitch_hype_train_logo" height="250" width="450"></v-img>
 
         <v-toolbar rounded color="purple">
-          <v-toolbar-title color="white">Hype Events</v-toolbar-title>
+          <v-toolbar-title color="white">Twitch Hype Train</v-toolbar-title>
         </v-toolbar>
 
-        <v-card-title> Track the progress of Twitch Hype events </v-card-title>
+        <v-card-title justify="center">
+          <v-container justify="center"
+            >Track your Twitch Hype Trains
+          </v-container></v-card-title
+        >
       </v-card>
     </v-col>
     <v-col>
       <v-col>
-        <v-card
-          outlined
-          align="center"
-          justify="center"
-          height="500"
-          width="450"
-        >
-          <v-img :src="twitch_goal_logo" ></v-img>
+        <v-card outlined align="center" justify="center" width="450">
+          <v-img :src="twitch_goal_logo" height="250" width="450"></v-img>
 
           <v-toolbar rounded color="purple">
-            <v-toolbar-title color="white">Goals</v-toolbar-title>
+            <v-toolbar-title color="white">Twitch Goals</v-toolbar-title>
           </v-toolbar>
-          <v-card-title justify="center" align="center"> </v-card-title>
 
-          <v-card-title> Track the progress of your Twitch Goals </v-card-title>
+          <v-card-title justify="center">
+            <v-container justify="center"
+              >Track your Twitch Goal
+            </v-container></v-card-title
+          >
         </v-card>
       </v-col>
     </v-col>
     <v-col></v-col>
   </v-row>
+  <v-row>
+    <v-col></v-col>
+    <v-col>
+      <v-card outlined align="center" justify="center" width="450">
+        <v-img :src="twitch_bits_logo" height="250" width="450"></v-img>
 
+        <v-toolbar rounded color="purple">
+          <v-toolbar-title color="white">Twitch Bits</v-toolbar-title>
+        </v-toolbar>
+        <v-card-title justify="center">
+          <v-container justify="center"
+            >Viewers publish messages with Twtich Bits</v-container
+          ></v-card-title
+        >
+      </v-card>
+    </v-col>
+    <v-col></v-col>
+  </v-row>
+  <v-row
+    ><v-col><v-container></v-container></v-col
+  ></v-row>
   <v-toolbar rounded color="purple"></v-toolbar>
   <v-container justify="center">
     <v-btn
@@ -139,6 +157,7 @@ import twitch_hype_train_img from "@/assets/hypetrain.png";
 import goals_hashtag_img from "@/assets/goals_hashtag.jpg";
 import twitch_subscribers_logo_img from "@/assets/twitch_subscribers_logo.png";
 import heart_img from "@/assets/heart.png";
+import bits_img from "@/assets/bits.gif";
 
 import Channels from "@/views/Channels.vue";
 export default {
@@ -146,6 +165,7 @@ export default {
   components: { Channels },
   mounted() {},
   data: () => ({
+    twitch_bits_logo: bits_img,
     twitch_hype_train_logo: twitch_hype_train_img,
     twitch_goal_logo: goals_hashtag_img,
     heart_logo: heart_img,

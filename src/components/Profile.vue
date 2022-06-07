@@ -16,7 +16,7 @@
           }"
           class="fill-height"
         >
-          <v-card class="mx-auto" hover>
+          <v-card class="mx-auto" outlined>
             <v-toolbar
               :color="channel.configuration.panel_settings.background_colour"
               elevation="4"
