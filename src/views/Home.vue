@@ -38,9 +38,9 @@
           <v-toolbar-title color="white">Followers</v-toolbar-title>
         </v-toolbar>
 
-        <v-card-subtitle>
+        <v-card-title>
           Track the progress of your desired amount of Twitch Followers
-        </v-card-subtitle>
+        </v-card-title>
       </v-card>
     </v-col>
     <v-col>
@@ -58,9 +58,9 @@
             <v-toolbar-title color="white">Subscribers</v-toolbar-title>
           </v-toolbar>
 
-          <v-card-subtitle>
+          <v-card-title>
             Track the progress of your desired amount of Twitch Subscribers
-          </v-card-subtitle>
+          </v-card-title>
         </v-card>
       </v-col>
       ></v-col
@@ -79,10 +79,7 @@
           <v-toolbar-title color="white">Hype Events</v-toolbar-title>
         </v-toolbar>
 
-        <v-card-title><v-divider></v-divider></v-card-title>
-        <v-card-subtitle>
-          Track the progress of Twitch Hype events
-        </v-card-subtitle>
+        <v-card-title> Track the progress of Twitch Hype events </v-card-title>
       </v-card>
     </v-col>
     <v-col>
@@ -94,18 +91,14 @@
           height="500"
           width="450"
         >
-          <v-img :src="twitch_goal_logo"></v-img>
+          <v-img :src="twitch_goal_logo" ></v-img>
 
           <v-toolbar rounded color="purple">
             <v-toolbar-title color="white">Goals</v-toolbar-title>
           </v-toolbar>
-          <v-card-title justify="center" align="center">
-            <v-divider></v-divider>
-          </v-card-title>
+          <v-card-title justify="center" align="center"> </v-card-title>
 
-          <v-card-subtitle>
-            Track the progress of your Twitch Goals
-          </v-card-subtitle>
+          <v-card-title> Track the progress of your Twitch Goals </v-card-title>
         </v-card>
       </v-col>
     </v-col>
@@ -135,7 +128,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import twitch_goal_img from "@/assets/twitchgoal.png";
 import followers2_img from "@/assets/followers2.png";
 import followed_img from "@/assets/followed.png";
