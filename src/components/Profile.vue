@@ -1,5 +1,12 @@
 <template>
-  <v-container>
+  <v-container
+    @mouseover="
+      $gtag.event('hover', {
+        event_label: channel.broadcaster_name,
+        event_category: 'inspect_channel',
+      })
+    "
+  >
     <v-sheet
       color="white"
       elevation="14"
@@ -76,6 +83,18 @@
                     `https://player.twitch.tv/?channel=` +
                     channel.broadcaster_name +
                     `&parent=jackmcguire1.github.io&autoplay=false`
+                  "
+                  @mouseover="
+                    $gtag.event('hover', {
+                      event_label: channel.broadcaster_name + '_video',
+                      event_category: 'inspect_channel',
+                    })
+                  "
+                  @click="
+                    $gtag.event('click', {
+                      event_label: channel.broadcaster_name + '_video',
+                      event_category: 'inspect_channel',
+                    })
                   "
                   allowfullscreen
                   height="300px"

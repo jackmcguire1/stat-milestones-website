@@ -53,6 +53,7 @@ export default {
   components: {},
   methods: {
     installExtension() {
+        this.$gtag.event("click", { event_label: "install_extension" });
         window.open('https://dashboard.twitch.tv/extensions/e93cf8730nd11z7gepkly2gry5kv8k', '_blank');
     }
   },

@@ -5,6 +5,12 @@
       :width="7"
       color="purple"
       indeterminate
+      @mouseover="
+        this.$gtag.event('hover', {
+          event_label: 'channels_loading_progress',
+          event_category: 'user_impatience',
+        })
+      "
     ></v-progress-circular>
 
     <v-container></v-container>
@@ -21,6 +27,12 @@
     color="deep-purple accent-4"
     elevation="24"
     v-model="snackbar.show"
+    @mouseover="
+      this.$gtag.event('hover', {
+        event_label: 'snackbar_interaction',
+        event_category: 'alert_interaction',
+      })
+    "
   >
     Found {{ channels.length }} Twitch streamers using Stat-Milestones!
     <v-btn
@@ -28,7 +40,13 @@
       color="red"
       elevation="2"
       x-small
-      @click="snackbar.show = false"
+      @click="
+        snackbar.show = false;
+        this.$gtag.event('click', {
+          event_label: 'close_snackbar',
+          event_category: 'alert_interaction',
+        });
+      "
     >
       X
     </v-btn>

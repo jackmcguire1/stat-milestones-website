@@ -1,5 +1,15 @@
 <template>
-  <v-carousel hide-delimiters cycle height="500">
+  <v-carousel
+    hide-delimiters
+    cycle
+    height="500"
+    @mouseover="
+      $gtag.event('hover', {
+        event_label: 'carousel',
+        event_category: 'user_browsing_activity',
+      })
+    "
+  >
     <v-carousel-item
       v-for="(item, i) in items"
       :key="i"
@@ -191,6 +201,7 @@ export default {
   }),
   methods: {
     installExtension() {
+      this.$gtag.event("click", { event_label: "install_extension" });
       window.open(
         "https://dashboard.twitch.tv/extensions/e93cf8730nd11z7gepkly2gry5kv8k",
         "_blank"

@@ -18,7 +18,7 @@ createApp(App)
     {
       appName: 'stat-milestones-website',
       pageTrackerScreenviewEnabled: true,
-      config: { id: "G-WZZT87HP70" },
+      config: { id: "UA-139758742-2" },
     },
     router
   )
