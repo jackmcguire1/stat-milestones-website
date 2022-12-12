@@ -1,25 +1,21 @@
 <template>
   <v-app>
+    <v-toolbar color="purple" elevation="4">
+      <v-toolbar-title>Stat-Milestones</v-toolbar-title>
+
+      <router-link style="color: white" to="/channels">
+        Live Twitch Streamers
+      </router-link>
+
+      <v-spacer></v-spacer>
+
+      <v-btn color="white" :style="'{font:white}'" @click="installExtension">
+        Install Extension
+        <v-icon right dark> mdi-cloud-upload </v-icon>
+      </v-btn>
+    </v-toolbar>
+
     <v-main>
-      <v-app-bar color="purple" elevation="4">
-        <v-appbar-title>
-          <router-link style="color: white" to="/"> <b> Stat-Milestones </b> </router-link>
-        </v-appbar-title>
-        <v-divider vertical></v-divider>
-        <v-row>
-          <v-col></v-col>
-
-          <v-btn color="white" flat>
-            <router-link style="color: white" to="/channels"> Live Twitch Streamers </router-link>
-          </v-btn>
-
-          <v-btn color="white" :style="'{font:white}'" @click="installExtension">
-            Install Extension
-            <v-icon right dark> mdi-cloud-upload </v-icon>
-          </v-btn>
-        </v-row>
-      </v-app-bar>
-
       <v-dialog persistence v-model="cookies" width="500">
         <v-card>
           <v-card-title class="text-h5 grey lighten-2">
@@ -39,7 +35,17 @@
               Learn More
             </v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="cookies = false;  $gtag.event('click', {event_label: 'google_cookies_close', event_category: 'google_cookies'});">
+            <v-btn
+              color="primary"
+              text
+              @click="
+                cookies = false;
+                $gtag.event('click', {
+                  event_label: 'google_cookies_close',
+                  event_category: 'google_cookies',
+                });
+              "
+            >
               I accept
             </v-btn>
           </v-card-actions>
@@ -52,7 +58,11 @@
 
       <v-footer dark justify="center">
         <v-container justify="center">
-          <v-btn color="white" :style="'{font:white}'" @click="installExtension">
+          <v-btn
+            color="white"
+            :style="'{font:white}'"
+            @click="installExtension"
+          >
             Install Extension
             <v-icon right dark> mdi-cloud-upload </v-icon>
           </v-btn>
@@ -70,7 +80,7 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
+import { onMounted } from "vue";
 
 export default {
   name: "App",
@@ -78,7 +88,10 @@ export default {
   methods: {
     installExtension() {
       this.$gtag.event("click", { event_label: "install_extension" });
-      window.open('https://dashboard.twitch.tv/extensions/e93cf8730nd11z7gepkly2gry5kv8k', '_blank');
+      window.open(
+        "https://dashboard.twitch.tv/extensions/e93cf8730nd11z7gepkly2gry5kv8k",
+        "_blank"
+      );
     },
     openGoogleCookies() {
       this.$gtag.event("click", {
@@ -86,18 +99,22 @@ export default {
         event_category: "google_cookies",
       });
 
-     
       window.open("https://policies.google.com/technologies/cookies", "_blank");
     },
   },
   data() {
     return {
-      cookies: false
+      cookies: false,
     };
   },
   mounted() {
-    setTimeout(function(){this.cookies=true;}.bind(this),10000)
-  }
+    setTimeout(
+      function () {
+        this.cookies = true;
+      }.bind(this),
+      10000
+    );
+  },
 };
 </script>
 
