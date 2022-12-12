@@ -1,19 +1,13 @@
 <template>
   <v-app>
-    <v-toolbar color="purple" elevation="4">
-      <v-toolbar-title>Stat-Milestones</v-toolbar-title>
-
-      <router-link style="color: white" to="/channels">
-        Live Twitch Streamers
-      </router-link>
-
-      <v-spacer></v-spacer>
+    <v-app-bar color="purple" elevation="4">
+      <v-app-bar-title>Stat-Milestones</v-app-bar-title>
 
       <v-btn color="white" :style="'{font:white}'" @click="installExtension">
         Install Extension
         <v-icon right dark> mdi-cloud-upload </v-icon>
       </v-btn>
-    </v-toolbar>
+    </v-app-bar>
 
     <v-main>
       <v-dialog persistence v-model="cookies" width="500">
