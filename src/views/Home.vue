@@ -123,7 +123,7 @@
         </v-toolbar>
         <v-card-title justify="center">
           <v-container justify="center"
-            >Viewers publish messages with Twtich Bits</v-container
+            >Viewers publish messages with Twitch Bits</v-container
           ></v-card-title
         >
       </v-card>
@@ -137,7 +137,7 @@
         </v-toolbar>
         <v-card-title justify="center">
           <v-container justify="center"
-            >Track donations to your chosen Twitch charity</v-container
+            >Track donations to Twitch Charity</v-container
           ></v-card-title
         >
       </v-card>
