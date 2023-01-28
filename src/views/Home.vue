@@ -128,6 +128,20 @@
         >
       </v-card>
     </v-col>
+    <v-col>
+      <v-card outlined align="center" justify="center" width="450">
+        <v-img :src="twitch_charity_logo" height="250" width="450"></v-img>
+
+        <v-toolbar rounded color="purple">
+          <v-toolbar-title color="white">Twitch Charity</v-toolbar-title>
+        </v-toolbar>
+        <v-card-title justify="center">
+          <v-container justify="center"
+            >Track donations to your chosen Twitch charity</v-container
+          ></v-card-title
+        >
+      </v-card>
+    </v-col>
     <v-col></v-col>
   </v-row>
   <v-row
@@ -168,6 +182,7 @@ import goals_hashtag_img from "@/assets/goals_hashtag.jpg";
 import twitch_subscribers_logo_img from "@/assets/twitch_subscribers_logo.png";
 import heart_img from "@/assets/heart.png";
 import bits_img from "@/assets/bits.gif";
+import charity_img from "@/assets/charity.jpeg";
 
 import Channels from "@/views/Channels.vue";
 export default {
@@ -176,6 +191,7 @@ export default {
   mounted() {},
   data: () => ({
     twitch_bits_logo: bits_img,
+    twitch_charity_logo: charity_img,
     twitch_hype_train_logo: twitch_hype_train_img,
     twitch_goal_logo: goals_hashtag_img,
     heart_logo: heart_img,

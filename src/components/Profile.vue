@@ -31,6 +31,9 @@
               outlined
               rounded
             >
+              <v-avatar>
+                {{ darkModeEmoji }}
+              </v-avatar>
               <v-toolbar-title
                 ><b
                   :style="
@@ -135,6 +138,7 @@ export default {
     iframe: {
       loaded: false,
     },
+    darkModeEmoji: "☀️",
   }),
   props: {
     channel: {},
@@ -142,6 +146,9 @@ export default {
   methods: {
     load: function () {
       this.iframe.loaded = true;
+      if (this.channel.configuration.panel_settings.dark_mode) {
+        this.darkModeEmoji = "🌙";
+      }
     },
   },
 };
