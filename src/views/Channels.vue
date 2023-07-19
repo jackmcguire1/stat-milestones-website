@@ -66,7 +66,7 @@
 
   <v-virtual-scroll height="700" item-height="700" :items="channels">
     <v-row>
-      <div v-for="channel in orderedChannels">
+      <div v-for="channel in sortedChannels">
         <Profile :channel="channel" :show="show"></Profile>
       </div>
     </v-row>
