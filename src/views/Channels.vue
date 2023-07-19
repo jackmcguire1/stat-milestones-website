@@ -54,8 +54,14 @@
 
   <v-select
       :items="['chatter_info.count', 'created_date', 'updated_date']"
-      label="Default"
+      label="Choose sort option"
       v-model="selectedSortOption"
+  ></v-select>
+
+  <v-select
+      :items="['desc', 'aesc']"
+      label="Sort By..."
+      v-model="selectedSortOperator"
   ></v-select>
   
   <v-virtual-scroll height="700" item-height="700" :items="channels">
@@ -87,6 +93,7 @@ export default {
     loadedChannels: false,
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     selectedSortOption: 'chatter_info.count', // Set an initial sorting option
+    selectedSortOperator: 'desc'
   }),
   methods: {
     getData: function () {
@@ -112,7 +119,7 @@ export default {
   },
   computed: {
    orderedChannels: function () {
-    return _.orderBy(this.channels, this.selectedSortOption\)
+    return _.orderBy(this.channels, this.selectedSortOption, this.selectedSortOperator)
    }
   },
 };
