@@ -92,8 +92,8 @@ export default {
     show: false,
     loadedChannels: false,
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
-    selectedSortOption: 'chatter_info.count', // Set an initial sorting option
-    selectedSortOperator: 'desc'
+    selectedSortOption: "chatter_info.count", // Set an initial sorting option
+    selectedSortOperator: "desc",
   }),
   methods: {
     getData: function () {
@@ -118,28 +118,33 @@ export default {
     },
   },
   computed: {
-    orderedChannels: function () {
-      function CreatedDate(a, b) {
-        return this.selectedSortOperator == "desc" ? a.created_date >= b.created_date : a.created_date <= b.created_date
-      }
+    sortedChannels() {
+      const channelsCopy = [...this.channels]; // Make a copy of the channels array
+      return channelsCopy.sort((a, b) => {
+        const valueA = this.getPropertyValue(a, this.selectedSortOption);
+        const valueB = this.getPropertyValue(b, this.selectedSortOption);
+        // Compare the values based on the selected sorting option
 
-      function UpdatedDate(a, b) {
-        return this.selectedSortOperator == "desc" ? a.updated_date >= b.updated_date : a.updated_date <= b.updated_date
-      }
+        switch (this.selectedSortOperator) {
+          case "desc":
+            respA = -1;
+            respB = 1;
+            break;
+          case "asc":
+            respA = 1;
+            respB = -1;
+            break;
+        }
 
-      function TwitchChatters(a, b) {
-        return this.selectedSortOperator == "desc" ? a.chatter_info.count >= b.chatter_info.count : a.chatter_info.count <= b.chatter_info.count
-      }
-
-      switch (true) {
-        case "created_date":
-          return this.channels.sort(CreatedDate)
-        case "updated_date":
-          return this.channels.sort(UpdatedDate)
-        case "chatter_info.count":
-          return this.channels.sort(TwitchChatters)
-      }
-    }
+        if (valueA < valueB) {
+          return respA;
+        }
+        if (valueA > valueB) {
+          return respB;
+        }
+        return 0;
+      });
+    },
   },
 };
 </script>
