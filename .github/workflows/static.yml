@@ -35,6 +35,9 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
+          
+      - run: cd stat-milestones-website
+      
       - name: Install dependencies
         run: npm install
       - name: Build
