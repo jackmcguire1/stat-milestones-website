@@ -119,7 +119,7 @@ export default {
   },
   computed: {
    orderedChannels: function () {
-    return _.orderBy(this.channels, this.selectedSortOption, this.selectedSortOperator)
+    return _.orderBy(this.channels, this.selectedSortOption)
    }
   },
 };
