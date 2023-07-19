@@ -12,12 +12,10 @@
         })
       "
     ></v-progress-circular>
-
     <v-container></v-container>
   </v-container>
   <v-container></v-container>
   <v-divider></v-divider>
-
   <v-snackbar
     :timeout="10000"
     absolute
@@ -54,15 +52,11 @@
 
   <v-select
     :items="['chatter_info.count', 'created_date', 'updated_date']"
-    label="Choose sort option"
+    label="Default"
     v-model="selectedSortOption"
   ></v-select>
 
-  <v-select
-    :items="['desc', 'asc']"
-    label="Desc / Asc"
-    v-model="selectedSortOperator"
-  ></v-select>
+  Expand Down
 
   <v-virtual-scroll height="700" item-height="700" :items="channels">
     <v-row>
@@ -71,10 +65,8 @@
       </div>
     </v-row>
   </v-virtual-scroll>
-
   <v-divider></v-divider>
 </template>
-
 <script>
 import Profile from "@/components/Profile.vue";
 import axios from "axios";
@@ -93,7 +85,6 @@ export default {
     loadedChannels: false,
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     selectedSortOption: "chatter_info.count", // Set an initial sorting option
-    selectedSortOperator: "desc",
   }),
   methods: {
     getData: function () {
@@ -106,6 +97,14 @@ export default {
           this.loadedChannels = true;
           this.snackbar.show = true;
         });
+    },
+    getPropertyValue: function (object, propertyPath) {
+      const properties = propertyPath.split(".");
+      let value = object;
+      for (const prop of properties) {
+        value = value[prop];
+      }
+      return value;
     },
     visibleChannels() {
       return this.channels.filter((p) => p.isActive).length;
@@ -124,23 +123,11 @@ export default {
         const valueA = this.getPropertyValue(a, this.selectedSortOption);
         const valueB = this.getPropertyValue(b, this.selectedSortOption);
         // Compare the values based on the selected sorting option
-
-        switch (this.selectedSortOperator) {
-          case "desc":
-            respA = -1;
-            respB = 1;
-            break;
-          case "asc":
-            respA = 1;
-            respB = -1;
-            break;
-        }
-
         if (valueA < valueB) {
-          return respA;
+          return -1;
         }
         if (valueA > valueB) {
-          return respB;
+          return 1;
         }
         return 0;
       });
