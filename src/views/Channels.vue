@@ -52,9 +52,15 @@
     </v-btn>
   </v-snackbar>
 
+  <v-select
+      :items="['chatter_info.count', 'channel.created_date', 'channel.updated_date']"
+      label="Default"
+      v-model="selectedSortOption"
+  ></v-select>
+  
   <v-virtual-scroll height="700" item-height="700" :items="channels">
     <v-row>
-      <div v-for="channel in channels">
+      <div v-for="channel in sortedChannels">
         <Profile :channel="channel" :show="show"></Profile>
       </div>
     </v-row>
@@ -80,6 +86,7 @@ export default {
     show: false,
     loadedChannels: false,
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
+    selectedSortOption: 'chatter_info.count', // Set an initial sorting option
   }),
   methods: {
     getData: function () {
@@ -93,6 +100,14 @@ export default {
           this.snackbar.show = true;
         });
     },
+    getPropertyValue: function (object, propertyPath) {
+      const properties = propertyPath.split('.');
+      let value = object;
+      for (const prop of properties) {
+        value = value[prop];
+      }
+      return value;
+    },
     visibleChannels() {
       return this.channels.filter((p) => p.isActive).length;
     },
@@ -102,6 +117,24 @@ export default {
         "_blank"
       );
     },
+  },
+  computed: {
+    sortedChannels() {
+      const channelsCopy = [...this.channels]; // Make a copy of the channels array
+      return channelsCopy.sort((a, b) => {
+        const valueA = this.getPropertyValue(a, this.selectedSortOption);
+        const valueB = this.getPropertyValue(b, this.selectedSortOption);
+
+        // Compare the values based on the selected sorting option
+        if (valueA < valueB) {
+          return -1;
+        }
+        if (valueA > valueB) {
+          return 1;
+        }
+        return 0;
+      });
+    }
   },
 };
 </script>
