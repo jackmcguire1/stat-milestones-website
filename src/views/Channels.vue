@@ -53,7 +53,7 @@
   </v-snackbar>
 
   <v-select
-      :items="['chatter_info.count', 'channel.created_date', 'channel.updated_date']"
+      :items="['chatter_info.count', 'created_date', 'updated_date']"
       label="Default"
       v-model="selectedSortOption"
   ></v-select>
