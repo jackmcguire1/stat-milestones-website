@@ -172,7 +172,6 @@
 <script>
 import twitch_goal_img from "@/assets/twitchgoal.png";
 import followers2_img from "@/assets/followers2.png";
-import followed_img from "@/assets/followed.PNG";
 import achieved_followers_img from "@/assets/achievedfollowers.png";
 import subscribers_img from "@/assets/subscribers.png";
 import twitch_logo_img from "@/assets/twitch.png";
@@ -200,9 +199,6 @@ export default {
     items: [
       {
         src: followers2_img,
-      },
-      {
-        src: followed_img,
       },
       {
         src: achieved_followers_img,
