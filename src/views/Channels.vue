@@ -53,17 +53,17 @@
   </v-snackbar>
 
   <v-select
-      :items="['chatter_info.count', 'created_date', 'updated_date']"
-      label="Choose sort option"
-      v-model="selectedSortOption"
+    :items="['chatter_info.count', 'created_date', 'updated_date']"
+    label="Choose sort option"
+    v-model="selectedSortOption"
   ></v-select>
 
   <v-select
-      :items="['desc', 'asc']"
-      label="Desc / Asc"
-      v-model="selectedSortOperator"
+    :items="['desc', 'asc']"
+    label="Desc / Asc"
+    v-model="selectedSortOperator"
   ></v-select>
-  
+
   <v-virtual-scroll height="700" item-height="700" :items="channels">
     <v-row>
       <div v-for="channel in orderedChannels">
@@ -118,27 +118,28 @@ export default {
     },
   },
   computed: {
-   orderedChannels: function () {
-    function CreatedDate(a, b) {
-      return this.selectedSortOperator == "desc" ? a.created_date >= b.created_date : a.created_date <= b.created_date
-    }
+    orderedChannels: function () {
+      function CreatedDate(a, b) {
+        return this.selectedSortOperator == "desc" ? a.created_date >= b.created_date : a.created_date <= b.created_date
+      }
 
-    function UpdatedDate(a, b) {
-      return  this.selectedSortOperator == "desc" ? a.updated_date >= b.updated_date : a.updated_date <= b.updated_date
-    }
+      function UpdatedDate(a, b) {
+        return this.selectedSortOperator == "desc" ? a.updated_date >= b.updated_date : a.updated_date <= b.updated_date
+      }
 
-    function TwitchChatters(a, b) {
-      return  this.selectedSortOperator == "desc" ? a.chatter_info.count >= b.chatter_info.count : a.chatter_info.count <= b.chatter_info.count
-    }
+      function TwitchChatters(a, b) {
+        return this.selectedSortOperator == "desc" ? a.chatter_info.count >= b.chatter_info.count : a.chatter_info.count <= b.chatter_info.count
+      }
 
-    switch {
-      case "created_date":
-            return this.channels.sort(CreatedDate)
-      case "updated_date":
-            return this.channels.sort(UpdatedDate)
-      case "chatter_info.count":
-            return this.channels.sort(TwitchChatters)
-   }
+      switch (true) {
+        case "created_date":
+          return this.channels.sort(CreatedDate)
+        case "updated_date":
+          return this.channels.sort(UpdatedDate)
+        case "chatter_info.count":
+          return this.channels.sort(TwitchChatters)
+      }
+    }
   },
 };
 </script>
