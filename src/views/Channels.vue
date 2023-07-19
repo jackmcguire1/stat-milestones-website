@@ -60,7 +60,7 @@
   
   <v-virtual-scroll height="700" item-height="700" :items="channels">
     <v-row>
-      <div v-for="channel in sortedChannels">
+      <div v-for="channel in orderedChannels">
         <Profile :channel="channel" :show="show"></Profile>
       </div>
     </v-row>
@@ -100,14 +100,6 @@ export default {
           this.snackbar.show = true;
         });
     },
-    getPropertyValue: function (object, propertyPath) {
-      const properties = propertyPath.split('.');
-      let value = object;
-      for (const prop of properties) {
-        value = value[prop];
-      }
-      return value;
-    },
     visibleChannels() {
       return this.channels.filter((p) => p.isActive).length;
     },
@@ -119,22 +111,9 @@ export default {
     },
   },
   computed: {
-    sortedChannels() {
-      const channelsCopy = [...this.channels]; // Make a copy of the channels array
-      return channelsCopy.sort((a, b) => {
-        const valueA = this.getPropertyValue(a, this.selectedSortOption);
-        const valueB = this.getPropertyValue(b, this.selectedSortOption);
-
-        // Compare the values based on the selected sorting option
-        if (valueA < valueB) {
-          return -1;
-        }
-        if (valueA > valueB) {
-          return 1;
-        }
-        return 0;
-      });
-    }
+   orderedChannels: function () {
+    return _.orderBy(this.channels, this.selectedSortOption\)
+   }
   },
 };
 </script>
