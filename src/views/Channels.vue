@@ -60,7 +60,7 @@
 
   <v-select
       :items="['desc', 'asc']"
-      label="Sort By..."
+      label="Desc / Asc"
       v-model="selectedSortOperator"
   ></v-select>
   
@@ -119,7 +119,25 @@ export default {
   },
   computed: {
    orderedChannels: function () {
-    return _.orderBy(this.channels, this.selectedSortOption)
+    function CreatedDate(a, b) {
+      return this.selectedSortOperator == "desc" ? a.created_date >= b.created_date : a.created_date <= b.created_date
+    }
+
+    function UpdatedDate(a, b) {
+      return  this.selectedSortOperator == "desc" ? a.updated_date >= b.updated_date : a.updated_date <= b.updated_date
+    }
+
+    function TwitchChatters(a, b) {
+      return  this.selectedSortOperator == "desc" ? a.chatter_info.count >= b.chatter_info.count : a.chatter_info.count <= b.chatter_info.count
+    }
+
+    switch {
+      case "created_date":
+            return this.channels.sort(CreatedDate)
+      case "updated_date":
+            return this.channels.sort(UpdatedDate)
+      case "chatter_info.count":
+            return this.channels.sort(TwitchChatters)
    }
   },
 };
