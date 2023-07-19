@@ -85,7 +85,7 @@ export default {
     getData: function () {
       let response = axios
         .get(
-          "https://6gywu6gbge.execute-api.us-east-1.amazonaws.com/Prod/live-channels?channel-id=?e93cf8730nd11z7gepkly2gry5kv8k"
+          "https://0u3uqckeqf.execute-api.us-east-1.amazonaws.com/Prod/live-channels?channel-id=?e93cf8730nd11z7gepkly2gry5kv8k"
         )
         .then((response) => {
           this.channels = response.data.channels;
