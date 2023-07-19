@@ -59,7 +59,7 @@
   ></v-select>
 
   <v-select
-      :items="['desc', 'aesc']"
+      :items="['desc', 'asc']"
       label="Sort By..."
       v-model="selectedSortOperator"
   ></v-select>
