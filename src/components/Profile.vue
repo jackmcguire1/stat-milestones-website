@@ -117,7 +117,7 @@
                 <span v-else>{{ channel.configuration.motd.msg }}</span>
               </v-container>
               <v-divider></v-divider>
-              <v-container> Profile Views: {{ channel.viewers }} </v-container>
+              <v-container> # Twitch Chatters: {{ channel.chatter_info.count }} </v-container>
               <v-divider></v-divider>
               <v-container>
                 Installed Stat-Milestones:
