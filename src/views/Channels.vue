@@ -56,8 +56,6 @@
     v-model="selectedSortOption"
   ></v-select>
 
-  Expand Down
-
   <v-virtual-scroll height="700" item-height="700" :items="channels">
     <v-row>
       <div v-for="channel in sortedChannels">
@@ -123,10 +121,10 @@ export default {
         const valueA = this.getPropertyValue(a, this.selectedSortOption);
         const valueB = this.getPropertyValue(b, this.selectedSortOption);
         // Compare the values based on the selected sorting option
-        if (valueA < valueB) {
+        if (valueA > valueB) {
           return -1;
         }
-        if (valueA > valueB) {
+        if (valueA < valueB) {
           return 1;
         }
         return 0;
