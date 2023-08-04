@@ -13,7 +13,7 @@ export default defineConfig({
       autoImport: true,
     }),
   ],
-  base: '/',
+  base: 'https://stat-milestones.dev/',
   define: { 'process.env': {} },
   resolve: {
     alias: {
