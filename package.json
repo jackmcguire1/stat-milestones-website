@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vite preview",
-    "build": "vite build --base=/stat-milestones-website/",
+    "build": "vite build",
     "lint": "vue-cli-service lint",
     "dev": "vite"
   },
