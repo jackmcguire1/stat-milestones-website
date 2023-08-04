@@ -85,7 +85,7 @@
                   v-bind:src="
                     `https://player.twitch.tv/?channel=` +
                     channel.broadcaster_name +
-                    `&parent=jackmcguire1.github.io&autoplay=false`
+                    `&parent=stat-milestones.dev&autoplay=false`
                   "
                   @mouseover="
                     $gtag.event('hover', {
