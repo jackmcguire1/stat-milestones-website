@@ -108,6 +108,7 @@
       </v-col>
     </v-row>
   </div>
+  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
 </template>
 <script>
 import Profile from "@/components/Profile.vue";

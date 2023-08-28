@@ -20,7 +20,7 @@
     </v-carousel-item>
     <v-diver></v-diver>
   </v-carousel>
-  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
+  <v-toolbar rounded color="deep-purple-accent-4"></v-toolbar>
   <v-container justify="center">
     <v-btn
       block
@@ -35,7 +35,7 @@
   >
 
   <v-divider></v-divider>
-  <v-toolbar rounded color="deep-purple-accent-3">
+  <v-toolbar rounded color="deep-purple accent-1">
     <v-toolbar-title color="white">FEATURES</v-toolbar-title>
   </v-toolbar>
 
@@ -59,7 +59,7 @@
         <v-card outlined align="center" justify="center" width="450">
           <v-img :src="heart_logo" height="250" width="450"></v-img>
 
-          <v-toolbar rounded color="purple">
+          <v-toolbar rounded color="deep-purple accent-1">
             <v-toolbar-title color="white">Followers</v-toolbar-title>
           </v-toolbar>
 
@@ -80,7 +80,7 @@
         <v-card outlined align="center" justify="center" width="450">
           <v-img :src="twitch_subscribers_logo"></v-img>
 
-          <v-toolbar rounded color="purple">
+          <v-toolbar rounded color="deep-purple accent-1">
             <v-toolbar-title color="white">Subscribers</v-toolbar-title>
           </v-toolbar>
 
@@ -101,7 +101,7 @@
         <v-card outlined align="center" justify="center" width="450">
           <v-img :src="twitch_hype_train_logo" height="250" width="450"></v-img>
 
-          <v-toolbar rounded color="purple">
+          <v-toolbar rounded color="deep-purple accent-1">
             <v-toolbar-title color="white">Twitch Hype Train</v-toolbar-title>
           </v-toolbar>
 
@@ -122,7 +122,7 @@
         <v-card outlined align="center" justify="center" width="450">
           <v-img :src="twitch_goal_logo" height="250" width="450"></v-img>
 
-          <v-toolbar rounded color="purple">
+          <v-toolbar rounded color="deep-purple accent-1">
             <v-toolbar-title color="white">Twitch Goals</v-toolbar-title>
           </v-toolbar>
 
@@ -143,7 +143,7 @@
         <v-card outlined align="center" justify="center" width="450">
           <v-img :src="twitch_bits_logo" height="250" width="450"></v-img>
 
-          <v-toolbar rounded color="purple">
+          <v-toolbar rounded color="deep-purple accent-1">
             <v-toolbar-title color="white">Twitch Bits</v-toolbar-title>
           </v-toolbar>
           <v-card-title justify="center">
@@ -163,7 +163,7 @@
         <v-card outlined align="center" justify="center" width="450">
           <v-img :src="twitch_charity_logo" height="250" width="450"></v-img>
 
-          <v-toolbar rounded color="purple">
+          <v-toolbar rounded color="deep-purple accent-1">
             <v-toolbar-title color="white">Twitch Charity</v-toolbar-title>
           </v-toolbar>
           <v-card-title justify="center">
@@ -176,7 +176,7 @@
     </v-carousel-item>
   </v-carousel>
 
-  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
+  <v-toolbar rounded color="deep-purple accent-1"></v-toolbar>
   <v-container justify="center">
     <v-btn
       block

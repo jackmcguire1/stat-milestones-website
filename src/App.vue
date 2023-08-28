@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-content>
-      <v-app-bar prominent color="deep-purple-accent-3" elevation="4">
+      <v-app-bar prominent color="deep-purple-accent-4" elevation="4">
         <v-app-bar-nav-icon
           variant="text"
           @click.stop="drawer = !drawer"
