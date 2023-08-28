@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar rounded color="purple">
+  <v-toolbar rounded color="deep-purple-accent-3">
     <v-toolbar-title color="white">LIVE TWITCH CHANNELS</v-toolbar-title>
   </v-toolbar>
   <v-snackbar
@@ -65,7 +65,7 @@
     <v-progress-circular
       :size="70"
       :width="7"
-      color="purple"
+      color="deep-purple-accent-3"
       indeterminate
       @mouseover="
         this.$gtag.event('hover', {

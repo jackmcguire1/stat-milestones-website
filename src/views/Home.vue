@@ -20,7 +20,7 @@
     </v-carousel-item>
     <v-diver></v-diver>
   </v-carousel>
-  <v-toolbar rounded color="purple"></v-toolbar>
+  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
   <v-container justify="center">
     <v-btn
       block
@@ -35,7 +35,7 @@
   >
 
   <v-divider></v-divider>
-  <v-toolbar rounded color="purple">
+  <v-toolbar rounded color="deep-purple-accent-3">
     <v-toolbar-title color="white">FEATURES</v-toolbar-title>
   </v-toolbar>
 
@@ -176,7 +176,7 @@
     </v-carousel-item>
   </v-carousel>
 
-  <v-toolbar rounded color="purple"></v-toolbar>
+  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
   <v-container justify="center">
     <v-btn
       block

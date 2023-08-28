@@ -72,7 +72,7 @@
                 <v-progress-circular
                   :size="30"
                   :width="7"
-                  color="purple"
+                  color="deep-purple-accent-3"
                   indeterminate
                 ></v-progress-circular>
               </v-container>
