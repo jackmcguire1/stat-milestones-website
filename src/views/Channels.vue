@@ -36,16 +36,30 @@
     </v-btn>
   </v-snackbar>
 
-  <v-select
-    align="center"
-    :items="['chatter_info.count', 'created_date', 'updated_date']"
-    label="Sort By"
-    v-model="selectedSortOption"
-  ></v-select>
-  <v-radio-group v-model="displayChannelsInGrid" inline>
-    <v-radio label="Carousel" value="carousel"></v-radio>
-    <v-radio label="Grid" value="grid"></v-radio>
-  </v-radio-group>
+  <v-container>
+    <v-select
+      align="center"
+      :items="['chatter_info.count', 'created_date', 'updated_date']"
+      label="Sort By"
+      v-model="selectedSortOption"
+    ></v-select>
+
+    <v-btn-toggle
+      v-model="displayChannelsInGrid"
+      rounded="0"
+      color="deep-purple-accent-3"
+      group
+    >
+      <v-btn value="carousel"> Carousel </v-btn>
+
+      <v-btn value="center"> Grid </v-btn>
+    </v-btn-toggle>
+
+    <v-text-field
+      disabled
+      :label="'Twitch Streamers Online:' + channels.length"
+    ></v-text-field>
+  </v-container>
 
   <v-container align="center" justify="center" v-if="!loadedChannels">
     <v-progress-circular
@@ -61,21 +75,21 @@
       "
     ></v-progress-circular>
   </v-container>
+
   <div v-if="displayChannelsInGrid == 'carousel'">
     <v-carousel
       v-model="currentSlide"
-      continous
       hide-delimiters
       height="auto"
       @mouseover="
         $gtag.event('hover', {
           event_label: 'carousel',
           event_category: 'user_browsing_activity',
-        });
+        })
       "
     >
       <v-carousel-item
-      eager
+        eager
         v-for="channel in sortedChannels"
         :key="channel.broadcaster_name"
         reverse-transition="fade-transition"
@@ -86,7 +100,6 @@
         </v-sheet>
       </v-carousel-item>
     </v-carousel>
-
   </div>
   <div v-else>
     <v-row class="three-cols">
@@ -95,8 +108,6 @@
       </v-col>
     </v-row>
   </div>
-
-  <v-divider></v-divider>
 </template>
 <script>
 import Profile from "@/components/Profile.vue";
@@ -110,7 +121,7 @@ export default {
   data: () => ({
     snackbar: {
       show: false,
-      grid: false
+      grid: false,
     },
     cycle: true,
     currentSlide: 0,

@@ -12,10 +12,9 @@
       justfiy="center"
       color="white"
       elevation="14"
-      height="720"
+      height="auto"
       outlined
       rounded
-      width="600"
     >
       <v-lazy
         v-model="channel.isActive"
