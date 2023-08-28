@@ -7,17 +7,6 @@
           @click.stop="drawer = !drawer"
         ></v-app-bar-nav-icon>
         <v-app-bar-title align="left"> Stat-Milestones</v-app-bar-title>
-
-        <v-container align="right">
-          <v-btn
-            color="white"
-            :style="'{font:white}'"
-            @click="installExtension"
-          >
-            Install Extension
-            <v-icon right dark> mdi-cloud-upload </v-icon>
-          </v-btn>
-        </v-container>
       </v-app-bar>
 
       <v-navigation-drawer v-model="drawer" location="left" permanent>
