@@ -190,9 +190,6 @@
   >
 
   <v-divider></v-divider>
-  <v-toolbar rounded color="purple">
-    <v-toolbar-title color="white">LIVE TWITCH CHANNELS</v-toolbar-title>
-  </v-toolbar>
   <Channels></Channels>
   
 </template>

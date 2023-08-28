@@ -1,7 +1,7 @@
 <template>
-  <v-container></v-container>
-  <v-container></v-container>
-  <v-divider></v-divider>
+  <v-toolbar rounded color="purple">
+    <v-toolbar-title color="white">LIVE TWITCH CHANNELS</v-toolbar-title>
+  </v-toolbar>
   <v-snackbar
     :timeout="10000"
     absolute
@@ -39,7 +39,7 @@
   <v-select
     align="center"
     :items="['chatter_info.count', 'created_date', 'updated_date']"
-    label="Default"
+    label="Sort By"
     v-model="selectedSortOption"
   ></v-select>
   <v-radio-group v-model="displayChannelsInGrid" inline>
