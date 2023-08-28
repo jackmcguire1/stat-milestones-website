@@ -74,7 +74,7 @@
                   :width="7"
                   color="deep-purple-accent-3"
                   indeterminate
-                ></v-progress-circular>
+                >Loading Twitch Video...</v-progress-circular>
               </v-container>
 
               <v-container></v-container>
