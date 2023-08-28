@@ -51,10 +51,14 @@
       <v-btn value="center"> Grid </v-btn>
     </v-btn-toggle>
 
-    <v-text-field
-      disabled
-      :label="'Twitch Streamers Online:' + channels.length"
-    ></v-text-field>
+    <v-container></v-container>
+
+    <v-card
+  >
+    <template v-slot:title>
+      Twitch Streamers Online: {{ channels.length }}
+    </template>
+  </v-card>
   </v-container>
 
   <v-container align="center" justify="center" v-if="!loadedChannels">
