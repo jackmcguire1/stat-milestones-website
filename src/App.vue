@@ -132,11 +132,11 @@ export default {
     },
     openChannels() {
       this.$gtag.event("click", { event_label: "channels" });
-      window.open("/channels");
+      window.open("/channels", "_self");
     },
     openHome() {
       this.$gtag.event("click", { event_label: "home" });
-      window.open("/");
+      window.open("/", "_self");
     },
     getDiscordLink() {
       axios
