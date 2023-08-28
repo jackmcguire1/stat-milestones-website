@@ -1,7 +1,7 @@
 <template>
   <v-carousel
     continous
-    cycle
+    hide-delimiters
     height="500"
     @mouseover="
       $gtag.event('hover', {
@@ -41,9 +41,8 @@
 
   <v-divider></v-divider>
   <v-carousel
-    hide-delimiters-background
     continous
-    cycle
+    hide-delimiters
     height="auto"
     @mouseover="
       $gtag.event('hover', {

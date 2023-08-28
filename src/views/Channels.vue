@@ -4,12 +4,8 @@
   </v-toolbar>
   <v-snackbar
     :timeout="10000"
-    absolute
-    centered
-    multiLine
-    left
     color="deep-purple accent-4"
-    elevation="24"
+    elevation="100"
     v-model="snackbar.show"
     @mouseover="
       this.$gtag.event('hover', {
@@ -121,7 +117,6 @@ export default {
   data: () => ({
     snackbar: {
       show: false,
-      grid: false,
     },
     cycle: true,
     currentSlide: 0,
