@@ -102,15 +102,11 @@
     </v-carousel>
   </div>
   <div v-else>
-    <v-virtual-scroll :height="500" :items="sortedChannels">
-      <v-row class="three-cols">
-        <template v-for="item in sortedChannels" :key="item.broadcaster_name">
-          <v-col>
-            <Profile :channel="item" :show="show"></Profile>
-          </v-col>
-        </template>
-      </v-row>
-    </v-virtual-scroll>
+    <v-row class="three-cols">
+      <v-col v-for="channel in sortedChannels" :key="channel.broadcaster_name">
+        <Profile :channel="channel" :show="show"></Profile>
+      </v-col>
+    </v-row>
   </div>
   <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
 </template>
