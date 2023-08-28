@@ -7,11 +7,39 @@ import.meta.hot;
 import VueGtag from "vue-gtag";
 import router from "./router";
 
+
+import { createVuetify } from 'vuetify'
+
+const myCustomLightTheme = {
+  dark: false,
+  colors: {
+    background: '#0B1340',
+    surface: '#0B1340',
+    primary: '#0B1340',
+    'primary-darken-1': '#3700B3',
+    secondary: '#03DAC6',
+    'secondary-darken-1': '#018786',
+    error: '#B00020',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00',
+  },
+}
+
+let vuetifyApp = createVuetify({
+  theme: {
+    defaultTheme: 'myCustomLightTheme',
+    themes: {
+      myCustomLightTheme,
+    },
+  },
+})
+
 loadFonts();
 
 createApp(App)
   .use(router)
-  .use(vuetify)
+  .use(vuetifyApp)
   .use(
     VueGtag,
     {

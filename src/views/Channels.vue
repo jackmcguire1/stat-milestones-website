@@ -74,6 +74,7 @@
       "
     >
       <v-carousel-item
+      eager
         v-for="channel in sortedChannels"
         :key="channel.broadcaster_name"
         reverse-transition="fade-transition"

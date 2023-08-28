@@ -40,6 +40,7 @@
 
   <v-divider></v-divider>
   <v-carousel
+  
     hide-delimiters
     cycle
     height="auto"
@@ -247,4 +248,8 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+.v-carousel__controls{
+       background: "#0B1340"
+   }
+   </style>

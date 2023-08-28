@@ -184,4 +184,9 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.body {
+  background: '#0B1340';
+  color:white
+}
 </style>
