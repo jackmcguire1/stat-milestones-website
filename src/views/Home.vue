@@ -38,25 +38,44 @@
     <v-toolbar-title color="white">FEATURES</v-toolbar-title>
   </v-toolbar>
 
-  <v-row justify="center">
-    <v-col></v-col>
-    <v-col>
-      <v-card outlined align="center" justify="center" width="450">
-        <v-img :src="heart_logo" height="250" width="450"></v-img>
+  <v-divider></v-divider>
+  <v-carousel
+    hide-delimiters
+    cycle
+    height="auto"
+    @mouseover="
+      $gtag.event('hover', {
+        event_label: 'carousel',
+        event_category: 'user_browsing_activity',
+      })
+    "
+  >
+    <v-carousel-item
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+      <v-sheet align="center" height="100%" tile>
+        <v-card outlined align="center" justify="center" width="450">
+          <v-img :src="heart_logo" height="250" width="450"></v-img>
 
-        <v-toolbar rounded color="purple">
-          <v-toolbar-title color="white">Followers</v-toolbar-title>
-        </v-toolbar>
+          <v-toolbar rounded color="purple">
+            <v-toolbar-title color="white">Followers</v-toolbar-title>
+          </v-toolbar>
 
-        <v-card-title justify="center">
-          <v-container justify="center"
-            >Track your Twitch Followers
-          </v-container></v-card-title
-        >
-      </v-card>
-    </v-col>
-    <v-col>
-      <v-col>
+          <v-card-title justify="center">
+            <v-container justify="center"
+              >Track your Twitch Followers
+            </v-container></v-card-title
+          >
+        </v-card>
+      </v-sheet>
+    </v-carousel-item>
+
+    <v-carousel-item
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+      <v-sheet align="center" height="100%" tile>
         <v-card outlined align="center" justify="center" width="450">
           <v-img :src="twitch_subscribers_logo"></v-img>
 
@@ -70,31 +89,35 @@
             </v-container></v-card-title
           >
         </v-card>
-      </v-col>
-    </v-col>
-    <v-col></v-col>
-  </v-row>
-  <v-row></v-row>
+      </v-sheet>
+    </v-carousel-item>
 
-  <v-row justify="center">
-    <v-col></v-col>
-    <v-col>
-      <v-card outlined align="center" justify="center" width="450">
-        <v-img :src="twitch_hype_train_logo" height="250" width="450"></v-img>
+    <v-carousel-item
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+      <v-sheet align="center" height="100%" tile>
+        <v-card outlined align="center" justify="center" width="450">
+          <v-img :src="twitch_hype_train_logo" height="250" width="450"></v-img>
 
-        <v-toolbar rounded color="purple">
-          <v-toolbar-title color="white">Twitch Hype Train</v-toolbar-title>
-        </v-toolbar>
+          <v-toolbar rounded color="purple">
+            <v-toolbar-title color="white">Twitch Hype Train</v-toolbar-title>
+          </v-toolbar>
 
-        <v-card-title justify="center">
-          <v-container justify="center"
-            >Track your Twitch Hype Trains
-          </v-container></v-card-title
-        >
-      </v-card>
-    </v-col>
-    <v-col>
-      <v-col>
+          <v-card-title justify="center">
+            <v-container justify="center"
+              >Track your Twitch Hype Trains
+            </v-container></v-card-title
+          >
+        </v-card>
+      </v-sheet>
+    </v-carousel-item>
+
+    <v-carousel-item
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+      <v-sheet align="center" height="100%" tile>
         <v-card outlined align="center" justify="center" width="450">
           <v-img :src="twitch_goal_logo" height="250" width="450"></v-img>
 
@@ -108,45 +131,50 @@
             </v-container></v-card-title
           >
         </v-card>
-      </v-col>
-    </v-col>
-    <v-col></v-col>
-  </v-row>
-  <v-row>
-    <v-col></v-col>
-    <v-col>
-      <v-card outlined align="center" justify="center" width="450">
-        <v-img :src="twitch_bits_logo" height="250" width="450"></v-img>
+      </v-sheet>
+    </v-carousel-item>
 
-        <v-toolbar rounded color="purple">
-          <v-toolbar-title color="white">Twitch Bits</v-toolbar-title>
-        </v-toolbar>
-        <v-card-title justify="center">
-          <v-container justify="center"
-            >Viewers publish messages with Twitch Bits</v-container
-          ></v-card-title
-        >
-      </v-card>
-    </v-col>
-    <v-col>
-      <v-card outlined align="center" justify="center" width="450">
-        <v-img :src="twitch_charity_logo" height="250" width="450"></v-img>
+    <v-carousel-item
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+      <v-sheet align="center" height="100%" tile>
+        <v-card outlined align="center" justify="center" width="450">
+          <v-img :src="twitch_bits_logo" height="250" width="450"></v-img>
 
-        <v-toolbar rounded color="purple">
-          <v-toolbar-title color="white">Twitch Charity</v-toolbar-title>
-        </v-toolbar>
-        <v-card-title justify="center">
-          <v-container justify="center"
-            >Track donations to Twitch Charity</v-container
-          ></v-card-title
-        >
-      </v-card>
-    </v-col>
-    <v-col></v-col>
-  </v-row>
-  <v-row
-    ><v-col><v-container></v-container></v-col
-  ></v-row>
+          <v-toolbar rounded color="purple">
+            <v-toolbar-title color="white">Twitch Bits</v-toolbar-title>
+          </v-toolbar>
+          <v-card-title justify="center">
+            <v-container justify="center"
+              >Viewers publish messages with Twitch Bits</v-container
+            ></v-card-title
+          >
+        </v-card>
+      </v-sheet>
+    </v-carousel-item>
+
+    <v-carousel-item
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    >
+      <v-sheet align="center" height="100%" tile>
+        <v-card outlined align="center" justify="center" width="450">
+          <v-img :src="twitch_charity_logo" height="250" width="450"></v-img>
+
+          <v-toolbar rounded color="purple">
+            <v-toolbar-title color="white">Twitch Charity</v-toolbar-title>
+          </v-toolbar>
+          <v-card-title justify="center">
+            <v-container justify="center"
+              >Track donations to Twitch Charity</v-container
+            ></v-card-title
+          >
+        </v-card>
+      </v-sheet>
+    </v-carousel-item>
+  </v-carousel>
+
   <v-toolbar rounded color="purple"></v-toolbar>
   <v-container justify="center">
     <v-btn
@@ -165,8 +193,8 @@
   <v-toolbar rounded color="purple">
     <v-toolbar-title color="white">LIVE TWITCH CHANNELS</v-toolbar-title>
   </v-toolbar>
-
   <Channels></Channels>
+  
 </template>
 
 <script>
