@@ -44,7 +44,9 @@ jobs:
       - name: Vite Build
         run: npm run build
 
-        
+      - name: Copy HTML file
+        run: cp ./dist/index.html ./dist/channels.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
@@ -53,8 +55,6 @@ jobs:
           # Upload dist repository
           path: './dist'
 
-      - name: Copy HTML file
-        run: cp ./dist/index.html ./dist/channels.html
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
