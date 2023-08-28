@@ -63,14 +63,15 @@
   </v-container>
   <div v-if="displayChannelsInGrid == 'carousel'">
     <v-carousel
+      v-model="currentSlide"
+      continous
       hide-delimiters
-      cycle
       height="auto"
       @mouseover="
         $gtag.event('hover', {
           event_label: 'carousel',
           event_category: 'user_browsing_activity',
-        })
+        });
       "
     >
       <v-carousel-item
@@ -85,6 +86,7 @@
         </v-sheet>
       </v-carousel-item>
     </v-carousel>
+
   </div>
   <div v-else>
     <v-row class="three-cols">
@@ -108,8 +110,10 @@ export default {
   data: () => ({
     snackbar: {
       show: false,
-      grid: false,
+      grid: false
     },
+    cycle: true,
+    currentSlide: 0,
     displayChannelsInGrid: "carousel",
     channels: [],
     show: false,
@@ -127,6 +131,7 @@ export default {
           this.channels = response.data.channels;
           this.loadedChannels = true;
           this.snackbar.show = true;
+          this.currentSlide = 1;
         });
     },
     getPropertyValue: function (object, propertyPath) {

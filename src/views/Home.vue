@@ -1,6 +1,6 @@
 <template>
   <v-carousel
-    hide-delimiters
+    continous
     cycle
     height="500"
     @mouseover="
@@ -18,6 +18,7 @@
     >
       <v-img :src="item.src"></v-img>
     </v-carousel-item>
+    <v-diver></v-diver>
   </v-carousel>
   <v-toolbar rounded color="purple"></v-toolbar>
   <v-container justify="center">
@@ -40,8 +41,8 @@
 
   <v-divider></v-divider>
   <v-carousel
-  
-    hide-delimiters
+    hide-delimiters-background
+    continous
     cycle
     height="auto"
     @mouseover="
@@ -192,7 +193,6 @@
 
   <v-divider></v-divider>
   <Channels></Channels>
-  
 </template>
 
 <script>
@@ -249,7 +249,7 @@ export default {
 };
 </script>
 <style>
-.v-carousel__controls{
-       background: "#0B1340"
-   }
-   </style>
+.v-carousel__controls {
+  background: "#0B1340";
+}
+</style>
