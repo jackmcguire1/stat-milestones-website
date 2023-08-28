@@ -74,6 +74,7 @@
         })
       "
     ></v-progress-circular>
+    Loading Twitch Channels
   </v-container>
 
   <div v-if="displayChannelsInGrid == 'carousel'">
