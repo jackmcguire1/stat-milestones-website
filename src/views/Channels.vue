@@ -1,19 +1,5 @@
 <template>
-  <v-container align="center" justify="center" v-if="!loadedChannels">
-    <v-progress-circular
-      :size="70"
-      :width="7"
-      color="purple"
-      indeterminate
-      @mouseover="
-        this.$gtag.event('hover', {
-          event_label: 'channels_loading_progress',
-          event_category: 'user_impatience',
-        })
-      "
-    ></v-progress-circular>
-    <v-container></v-container>
-  </v-container>
+  <v-container></v-container>
   <v-container></v-container>
   <v-divider></v-divider>
   <v-snackbar
@@ -51,18 +37,62 @@
   </v-snackbar>
 
   <v-select
+    align="center"
     :items="['chatter_info.count', 'created_date', 'updated_date']"
     label="Default"
     v-model="selectedSortOption"
   ></v-select>
+  <v-radio-group v-model="displayChannelsInGrid" inline>
+    <v-radio label="Carousel" value="carousel"></v-radio>
+    <v-radio label="Grid" value="grid"></v-radio>
+  </v-radio-group>
 
-  <v-virtual-scroll height="700" item-height="700" :items="channels">
-    <v-row>
-      <div v-for="channel in sortedChannels">
+  <v-container align="center" justify="center" v-if="!loadedChannels">
+    <v-progress-circular
+      :size="70"
+      :width="7"
+      color="purple"
+      indeterminate
+      @mouseover="
+        this.$gtag.event('hover', {
+          event_label: 'channels_loading_progress',
+          event_category: 'user_impatience',
+        })
+      "
+    ></v-progress-circular>
+  </v-container>
+  <div v-if="displayChannelsInGrid == 'carousel'">
+    <v-carousel
+      hide-delimiters
+      cycle
+      height="auto"
+      @mouseover="
+        $gtag.event('hover', {
+          event_label: 'carousel',
+          event_category: 'user_browsing_activity',
+        })
+      "
+    >
+      <v-carousel-item
+        v-for="channel in sortedChannels"
+        :key="channel.broadcaster_name"
+        reverse-transition="fade-transition"
+        transition="fade-transition"
+      >
+        <v-sheet align="center">
+          <Profile :channel="channel" :show="show"></Profile>
+        </v-sheet>
+      </v-carousel-item>
+    </v-carousel>
+  </div>
+  <div v-else>
+    <v-row class="three-cols">
+      <v-col v-for="channel in sortedChannels" :key="channel.broadcaster_name">
         <Profile :channel="channel" :show="show"></Profile>
-      </div>
+      </v-col>
     </v-row>
-  </v-virtual-scroll>
+  </div>
+
   <v-divider></v-divider>
 </template>
 <script>
@@ -77,12 +107,14 @@ export default {
   data: () => ({
     snackbar: {
       show: false,
+      grid: false,
     },
+    displayChannelsInGrid: "carousel",
     channels: [],
     show: false,
     loadedChannels: false,
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
-    selectedSortOption: "chatter_info.count", // Set an initial sorting option
+    selectedSortOption: "updated_date", // Set an initial sorting option
   }),
   methods: {
     getData: function () {
@@ -133,5 +165,4 @@ export default {
   },
 };
 </script>
-<style>
-</style>
+<style></style>

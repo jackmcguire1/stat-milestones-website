@@ -1,15 +1,39 @@
 <template>
   <v-app>
-    <v-app-bar color="purple" elevation="4">
-      <v-app-bar-title>Stat-Milestones</v-app-bar-title>
+    <v-app-bar prominent color="purple" elevation="4">
+      <v-app-bar-nav-icon
+        variant="text"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
+      <v-app-bar-title align="left"> Stat-Milestones</v-app-bar-title>
 
-      <v-btn color="white" :style="'{font:white}'" @click="installExtension">
-        Install Extension
-        <v-icon right dark> mdi-cloud-upload </v-icon>
-      </v-btn>
+      <v-container align="right">
+          <v-btn
+            color="white"
+            :style="'{font:white}'"
+            @click="installExtension"
+          >
+            Install Extension
+            <v-icon right dark> mdi-cloud-upload </v-icon>
+          </v-btn>
+        </v-container>
     </v-app-bar>
 
-    <v-main>
+    <v-navigation-drawer v-model="drawer" location="left" permanent>
+      <v-list-item
+        title="Twitch Extension About Page"
+        @click="installExtension"
+      >
+        <v-avatar><v-icon right dark> mdi-cloud-upload </v-icon></v-avatar>
+      </v-list-item>
+
+      <v-list-item title="Discord" @click="openDiscord">
+        <v-avatar><v-icon right dark> mdi-plus </v-icon></v-avatar>
+      </v-list-item>
+    </v-navigation-drawer>
+
+    <v-main
+      >cookies
       <v-dialog persistence v-model="cookies" width="500">
         <v-card>
           <v-card-title class="text-h5 grey lighten-2">
@@ -74,7 +98,7 @@
 </template>
 
 <script>
-import { onMounted } from "vue";
+import axios from "axios";
 
 export default {
   name: "App",
@@ -95,16 +119,32 @@ export default {
 
       window.open("https://policies.google.com/technologies/cookies", "_blank");
     },
+    openDiscord() {
+      this.$gtag.event("click", { event_label: "discord_channel" });
+      window.open(this.discordLink, "_blank");
+    },
+    getDiscordLink() {
+      axios
+        .get("https://discord.com/api/guilds/997982082263433288/widget.json")
+        .then((resp) => {
+          this.discordLink = resp.data.instant_invite;
+        })
+        .catch((error) => {});
+    },
   },
   data() {
     return {
       cookies: false,
+      drawer: false,
+      rail: true,
+      discordLink: "",
     };
   },
   mounted() {
+    this.getDiscordLink();
     setTimeout(
       function () {
-        this.cookies = true;
+        //this.cookies = true;
       }.bind(this),
       10000
     );
@@ -119,10 +159,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
 }
 
 #nav a {
