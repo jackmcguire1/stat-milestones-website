@@ -104,11 +104,46 @@
   <div v-else>
     <v-row class="three-cols">
       <v-col v-for="channel in sortedChannels" :key="channel.broadcaster_name">
-        <Profile :channel="channel" :show="show"></Profile>
+        <v-container
+          @click="
+            dialogProfile = channel;
+            displayProfile = true;
+          "
+          :style="'cursor: pointer;'"
+        >
+          <KeepAlive>
+            <Profile :channel="channel" :show="show"></Profile>
+          </KeepAlive>
+        </v-container>
       </v-col>
     </v-row>
   </div>
+  <v-container></v-container>
   <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
+
+  <v-dialog v-model="displayProfile">
+    <v-card>
+      <v-card-title class="text-h5 grey lighten-2">
+        Twitch Streamer
+      </v-card-title>
+      <Profile :channel="dialogProfile" :show="show"></Profile>
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="danger"
+          text
+          @click="
+            displayProfile = false;
+            dialogProfile = {};
+          "
+        >
+          Close
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 <script>
 import Profile from "@/components/Profile.vue";
@@ -131,6 +166,8 @@ export default {
     loadedChannels: false,
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     selectedSortOption: "updated_date", // Set an initial sorting option
+    displayProfile: false,
+    dialogProfile: {},
   }),
   methods: {
     getData: function () {
