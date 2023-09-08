@@ -39,7 +39,7 @@
     <v-toolbar-title color="white">FEATURES</v-toolbar-title>
   </v-toolbar>
 
-  <v-divider></v-divider>
+  <v-container></v-container>
   <v-carousel
     continous
     hide-delimiters
@@ -190,6 +190,7 @@
     </v-btn></v-container
   >
 
+  <Playground></Playground>
   <v-divider></v-divider>
   <Channels></Channels>
 </template>
@@ -209,9 +210,11 @@ import bits_img from "@/assets/bits.gif";
 import charity_img from "@/assets/charity.jpeg";
 
 import Channels from "@/views/Channels.vue";
+import Playground from "@/views/Playground.vue";
+
 export default {
   name: "Home",
-  components: { Channels },
+  components: { Channels, Playground },
   mounted() {},
   data: () => ({
     twitch_bits_logo: bits_img,

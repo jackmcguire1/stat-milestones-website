@@ -30,11 +30,12 @@
             flat
             outlined
             rounded
+            :style="'cursor: pointer;'"
           >
             <v-avatar>
               {{ darkModeEmoji }}
             </v-avatar>
-            <v-toolbar-title
+            <v-toolbar-title @click="openProfile(channel.broadcaster_name)"
               ><b
                 :style="
                   `color:` +
@@ -123,7 +124,7 @@
             </v-container>
             <v-divider></v-divider>
             <v-container>
-              Installed Stat-Milestones:
+              Installed:
               <b>{{ channel.created_date }}</b>
             </v-container>
           </v-card-text>
@@ -151,6 +152,10 @@ export default {
       if (this.channel.configuration.panel_settings.dark_mode) {
         this.darkModeEmoji = "🌙";
       }
+    },
+    openProfile(username) {
+      this.$gtag.event("click", { event_label: "profile-title" });
+      window.open("https://twitch.tv/" + username + "/about", "_blank");
     },
   },
 };
