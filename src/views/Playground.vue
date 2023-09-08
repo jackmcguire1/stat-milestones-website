@@ -2,12 +2,12 @@
   <v-toolbar rounded color="deep-purple accent-1">
     <v-toolbar-title color="white">PLAYGROUND</v-toolbar-title>
   </v-toolbar>
-  <v-container>
+  <v-container fluid style="height: 100vh">
     <iframe
-      id="ifrm"
       src="https://playground.stat-milestones.dev"
-      width="1500px"
-      height="950px"
+      width="100%"
+      height="100%"
+      allowfullscreen
     ></iframe>
   </v-container>
 </template>
@@ -19,4 +19,19 @@ export default {
   data: () => ({}),
 };
 </script>
-<style></style>
+<style>
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+.h_iframe iframe {
+  width: 100%;
+  height: 100%;
+}
+.h_iframe {
+  height: 100%;
+  width: 100%;
+}
+</style>
