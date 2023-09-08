@@ -111,9 +111,7 @@
           "
           :style="'cursor: pointer;'"
         >
-          <KeepAlive>
-            <Profile :channel="channel" :show="show"></Profile>
-          </KeepAlive>
+          <Profile :channel="channel" :show="show"></Profile>
         </v-container>
       </v-col>
     </v-row>
