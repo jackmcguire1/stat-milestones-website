@@ -105,8 +105,12 @@
     </v-carousel>
   </div>
   <div v-if="displayChannelsFormat == 'grid'">
-    <v-row class="two-cols">
-      <v-col v-for="channel in sortedGrid" :key="channel.broadcaster_name">
+    <v-row no-gutters>
+      <v-col
+        cols="4"
+        v-for="channel in sortedGrid"
+        :key="channel.broadcaster_name"
+      >
         <v-container
           @click="
             dialogProfile = channel;
