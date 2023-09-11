@@ -41,14 +41,17 @@
     ></v-select>
 
     <v-btn-toggle
-      v-model="displayChannelsInGrid"
+      v-model="displayChannelsFormat"
       rounded="0"
       color="deep-purple-accent-3"
       group
+      mandatory
     >
       <v-btn value="carousel"> Carousel </v-btn>
 
-      <v-btn value="center"> Grid </v-btn>
+      <v-btn value="grid"> Grid </v-btn>
+
+      <v-btn value="list"> List </v-btn>
     </v-btn-toggle>
 
     <v-container></v-container>
@@ -76,7 +79,7 @@
     Loading Twitch Channels
   </v-container>
 
-  <div v-if="displayChannelsInGrid == 'carousel'">
+  <div v-if="displayChannelsFormat == 'carousel'">
     <v-carousel
       v-model="currentSlide"
       hide-delimiters
@@ -101,9 +104,9 @@
       </v-carousel-item>
     </v-carousel>
   </div>
-  <div v-else>
-    <v-row class="three-cols">
-      <v-col v-for="channel in sortedChannels" :key="channel.broadcaster_name">
+  <div v-if="displayChannelsFormat == 'grid'">
+    <v-row class="three-column">
+      <v-col v-for="channel in sortedGrid" :key="channel.broadcaster_name">
         <v-container
           @click="
             dialogProfile = channel;
@@ -115,7 +118,30 @@
         </v-container>
       </v-col>
     </v-row>
+    <v-row align="center">
+      <v-col> <v-btn @click="loadMore">Load More</v-btn></v-col>
+    </v-row>
   </div>
+  <div v-if="displayChannelsFormat == 'list'">
+    <v-infinite-scroll :items="sortedChannels">
+      <template
+        v-for="channel in sortedChannels"
+        :key="channel.broadcaster_name"
+      >
+        <v-container
+          @click="
+            dialogProfile = channel;
+            displayProfile = true;
+          "
+          :style="'cursor: pointer;'"
+        >
+          <Profile :channel="channel" :show="show"></Profile>
+        </v-container>
+        <v-container></v-container>
+      </template>
+    </v-infinite-scroll>
+  </div>
+
   <v-container></v-container>
   <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
 
@@ -146,6 +172,9 @@
 <script>
 import Profile from "@/components/Profile.vue";
 import axios from "axios";
+
+const pageSize = 10;
+
 export default {
   name: "Channels",
   components: { Profile },
@@ -158,7 +187,7 @@ export default {
     },
     cycle: true,
     currentSlide: 0,
-    displayChannelsInGrid: "carousel",
+    displayChannelsFormat: "carousel",
     channels: [],
     show: false,
     loadedChannels: false,
@@ -166,6 +195,9 @@ export default {
     selectedSortOption: "updated_date", // Set an initial sorting option
     displayProfile: false,
     dialogProfile: {},
+    gridItems: [],
+    gridIndex: 0,
+    gridBatchSize: 2,
   }),
   methods: {
     getData: function () {
@@ -178,6 +210,9 @@ export default {
           this.loadedChannels = true;
           this.snackbar.show = true;
           this.currentSlide = 1;
+          this.totalChannelsCount = response.data.channels.length;
+          this.gridItems.push(...this.channels.slice(0, this.gridBatchSize));
+          this.gridIndex = this.gridBatchSize;
         });
     },
     getPropertyValue: function (object, propertyPath) {
@@ -197,10 +232,34 @@ export default {
         "_blank"
       );
     },
+    loadMore() {
+      this.gridItems.push(
+        ...this.channels.slice(
+          this.gridIndex,
+          this.gridIndex + this.gridBatchSize
+        )
+      );
+      this.gridIndex += this.gridBatchSize;
+    },
   },
   computed: {
     sortedChannels() {
       const channelsCopy = [...this.channels]; // Make a copy of the channels array
+      return channelsCopy.sort((a, b) => {
+        const valueA = this.getPropertyValue(a, this.selectedSortOption);
+        const valueB = this.getPropertyValue(b, this.selectedSortOption);
+        // Compare the values based on the selected sorting option
+        if (valueA > valueB) {
+          return -1;
+        }
+        if (valueA < valueB) {
+          return 1;
+        }
+        return 0;
+      });
+    },
+    sortedGrid() {
+      const channelsCopy = [...this.gridItems]; // Make a copy of the channels array
       return channelsCopy.sort((a, b) => {
         const valueA = this.getPropertyValue(a, this.selectedSortOption);
         const valueB = this.getPropertyValue(b, this.selectedSortOption);
