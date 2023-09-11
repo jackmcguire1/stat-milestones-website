@@ -84,8 +84,8 @@
               <v-container v-if="!display">
                 <v-img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBJKdY60KGUY-Ebe77-HkB-UkNmzBxELFMjw&usqp=CAU"
-                  height="200px"
-                  width="200px"
+                  height="300px"
+                  width="500px"
                 >
                 </v-img>
               </v-container>

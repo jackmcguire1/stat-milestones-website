@@ -124,7 +124,9 @@
     </v-row>
     <v-row align="center">
       <v-col>
-        <v-container v-if="loadedChannels">
+        <v-container
+          v-if="loadedChannels && this.gridItems.length < this.channels.length"
+        >
           <v-btn @click="loadMore">Load More</v-btn></v-container
         ></v-col
       >
@@ -202,7 +204,7 @@ export default {
     dialogProfile: {},
     gridItems: [],
     gridIndex: 0,
-    gridBatchSize: 2,
+    gridBatchSize: 6,
   }),
   methods: {
     getData: function () {
