@@ -119,7 +119,11 @@
       </v-col>
     </v-row>
     <v-row align="center">
-      <v-col> <v-btn @click="loadMore">Load More</v-btn></v-col>
+      <v-col>
+        <v-container v-if="loadedChannels">
+          <v-btn @click="loadMore">Load More</v-btn></v-container
+        ></v-col
+      >
     </v-row>
   </div>
   <div v-if="displayChannelsFormat == 'list'">
