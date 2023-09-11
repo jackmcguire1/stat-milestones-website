@@ -105,7 +105,7 @@
     </v-carousel>
   </div>
   <div v-if="displayChannelsFormat == 'grid'">
-    <v-row class="three-cols">
+    <v-row class="two-cols">
       <v-col v-for="channel in sortedGrid" :key="channel.broadcaster_name">
         <v-container
           @click="
@@ -194,7 +194,7 @@ export default {
     dialogProfile: {},
     gridItems: [],
     gridIndex: 0,
-    gridBatchSize: 3,
+    gridBatchSize: 2,
   }),
   methods: {
     getData: function () {
