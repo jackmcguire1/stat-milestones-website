@@ -194,7 +194,7 @@ export default {
     dialogProfile: {},
     gridItems: [],
     gridIndex: 0,
-    gridBatchSize: 2,
+    gridBatchSize: 3,
   }),
   methods: {
     getData: function () {
