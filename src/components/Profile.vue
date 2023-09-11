@@ -80,7 +80,16 @@
               </v-container>
 
               <v-container></v-container>
-              <v-container>
+
+              <v-container v-if="!display">
+                <v-img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBJKdY60KGUY-Ebe77-HkB-UkNmzBxELFMjw&usqp=CAU"
+                  height="200px"
+                  width="200px"
+                >
+                </v-img>
+              </v-container>
+              <v-container v-if="display">
                 <iframe
                   @load="load"
                   v-show="iframe.loaded"
@@ -146,6 +155,7 @@ export default {
   }),
   props: {
     channel: {},
+    display: Boolean,
   },
   methods: {
     load: function () {
