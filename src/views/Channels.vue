@@ -99,7 +99,7 @@
         transition="fade-transition"
       >
         <v-sheet align="center">
-          <Profile :channel="channel" :show="show"></Profile>
+          <Profile :channel="channel" :show="show" :display="true"></Profile>
         </v-sheet>
       </v-carousel-item>
     </v-carousel>
@@ -114,7 +114,7 @@
           "
           :style="'cursor: pointer;'"
         >
-          <Profile :channel="channel" :show="show"></Profile>
+          <Profile :channel="channel" :show="show" :display="false"></Profile>
         </v-container>
       </v-col>
     </v-row>
@@ -135,7 +135,7 @@
           "
           :style="'cursor: pointer;'"
         >
-          <Profile :channel="channel" :show="show"></Profile>
+          <Profile :channel="channel" :show="show" :display="true"></Profile>
         </v-container>
         <v-container></v-container>
       </template>
@@ -147,10 +147,7 @@
 
   <v-dialog v-model="displayProfile">
     <v-card>
-      <v-card-title class="text-h5 grey lighten-2">
-        Twitch Streamer
-      </v-card-title>
-      <Profile :channel="dialogProfile" :show="show"></Profile>
+      <Profile :channel="dialogProfile" :show="show" :display="true"></Profile>
       <v-divider></v-divider>
 
       <v-card-actions>

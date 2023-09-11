@@ -68,7 +68,7 @@
               <v-container
                 align="center"
                 justify="center"
-                v-if="!iframe.loaded"
+                v-if="!iframe.loaded && display"
               >
                 <v-progress-circular
                   :size="30"
@@ -81,31 +81,41 @@
 
               <v-container></v-container>
 
-              <iframe
-                @load="load"
-                v-show="iframe.loaded"
-                v-bind:src="
-                  `https://player.twitch.tv/?channel=` +
-                  channel.broadcaster_name +
-                  `&parent=stat-milestones.dev&autoplay=false`
-                "
-                @mouseover="
-                  $gtag.event('hover', {
-                    event_label: channel.broadcaster_name + '_video',
-                    event_category: 'inspect_channel',
-                  })
-                "
-                @click="
-                  $gtag.event('click', {
-                    event_label: channel.broadcaster_name + '_video',
-                    event_category: 'inspect_channel',
-                  })
-                "
-                allowfullscreen
-                height="300px"
-                width="500px"
-              >
-              </iframe>
+              <v-container v-if="!display">
+                <v-img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBJKdY60KGUY-Ebe77-HkB-UkNmzBxELFMjw&usqp=CAU"
+                  height="200px"
+                  width="200px"
+                >
+                </v-img>
+              </v-container>
+              <v-container v-if="display">
+                <iframe
+                  @load="load"
+                  v-show="iframe.loaded"
+                  v-bind:src="
+                    `https://player.twitch.tv/?channel=` +
+                    channel.broadcaster_name +
+                    `&parent=stat-milestones.dev&autoplay=false`
+                  "
+                  @mouseover="
+                    $gtag.event('hover', {
+                      event_label: channel.broadcaster_name + '_video',
+                      event_category: 'inspect_channel',
+                    })
+                  "
+                  @click="
+                    $gtag.event('click', {
+                      event_label: channel.broadcaster_name + '_video',
+                      event_category: 'inspect_channel',
+                    })
+                  "
+                  allowfullscreen
+                  height="300px"
+                  width="500px"
+                >
+                </iframe>
+              </v-container>
             </v-container>
             <v-container align="center">
               <span
@@ -145,6 +155,7 @@ export default {
   }),
   props: {
     channel: {},
+    display: Boolean,
   },
   methods: {
     load: function () {
