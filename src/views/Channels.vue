@@ -99,7 +99,7 @@
         transition="fade-transition"
       >
         <v-sheet align="center">
-          <Profile :channel="channel" :show="show" :display="true"></Profile>
+          <Profile :channel="channel" :show="show"></Profile>
         </v-sheet>
       </v-carousel-item>
     </v-carousel>
@@ -114,7 +114,7 @@
           "
           :style="'cursor: pointer;'"
         >
-          <Profile :channel="channel" :show="show" :display="false"></Profile>
+          <Profile :channel="channel" :show="show"></Profile>
         </v-container>
       </v-col>
     </v-row>
@@ -135,7 +135,7 @@
           "
           :style="'cursor: pointer;'"
         >
-          <Profile :channel="channel" :show="show" :display="true"></Profile>
+          <Profile :channel="channel" :show="show"></Profile>
         </v-container>
         <v-container></v-container>
       </template>
@@ -147,7 +147,7 @@
 
   <v-dialog v-model="displayProfile">
     <v-card>
-      <Profile :channel="dialogProfile" :show="show" :display="true"></Profile>
+      <Profile :channel="dialogProfile" :show="show"></Profile>
       <v-divider></v-divider>
 
       <v-card-actions>
