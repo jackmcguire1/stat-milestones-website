@@ -105,7 +105,7 @@
     </v-carousel>
   </div>
   <div v-if="displayChannelsFormat == 'grid'">
-    <v-row class="three-column">
+    <v-row class="three-cols">
       <v-col v-for="channel in sortedGrid" :key="channel.broadcaster_name">
         <v-container
           @click="
