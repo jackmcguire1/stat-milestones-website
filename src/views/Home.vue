@@ -191,8 +191,33 @@
   >
 
   <Analytics></Analytics>
-  <v-container></v-container>
+  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
+  <v-container justify="center">
+    <v-btn
+      block
+      large
+      color="white"
+      :style="'{font:white}'"
+      @click="installExtension"
+    >
+      Install Extension
+      <v-icon right dark> mdi-cloud-upload </v-icon>
+    </v-btn></v-container
+  >
   <Playground></Playground>
+  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
+  <v-container justify="center">
+    <v-btn
+      block
+      large
+      color="white"
+      :style="'{font:white}'"
+      @click="installExtension"
+    >
+      Install Extension
+      <v-icon right dark> mdi-cloud-upload </v-icon>
+    </v-btn></v-container
+  >
   <v-divider></v-divider>
   <Channels></Channels>
 </template>
