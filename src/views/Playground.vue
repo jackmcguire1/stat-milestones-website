@@ -2,7 +2,7 @@
   <v-toolbar rounded color="deep-purple-accent-3">
     <v-toolbar-title color="white">PLAYGROUND</v-toolbar-title>
   </v-toolbar>
-  <v-container fluid style="height: 100vh">
+  <v-container fluid style="height: 35vh">
     <iframe
       src="https://playground.stat-milestones.dev"
       width="100%"

@@ -105,10 +105,10 @@
     </v-carousel>
   </div>
   <div v-if="displayChannelsFormat == 'grid'">
-    <v-row no-gutters>
+    <v-row class="ma-2">
       <v-col
-        align="center"
-        cols="4"
+        md="4"
+        class="pa-3 d-flex flex-column"
         v-for="channel in sortedGrid"
         :key="channel.broadcaster_name"
       >
@@ -122,6 +122,7 @@
           <Profile :channel="channel" :show="show" :display="false"></Profile>
         </v-container>
       </v-col>
+      <v-col></v-col>
     </v-row>
     <v-row align="center">
       <v-col>
@@ -134,11 +135,8 @@
     </v-row>
   </div>
   <div v-if="displayChannelsFormat == 'list'">
-    <v-infinite-scroll :items="sortedChannels">
-      <template
-        v-for="channel in sortedChannels"
-        :key="channel.broadcaster_name"
-      >
+    <v-infinite-scroll :items="sortedGrid">
+      <template v-for="channel in sortedGrid" :key="channel.broadcaster_name">
         <v-container
           @click="
             dialogProfile = channel;
@@ -151,6 +149,15 @@
         <v-container></v-container>
       </template>
     </v-infinite-scroll>
+    <v-row align="center">
+      <v-col>
+        <v-container
+          v-if="loadedChannels && this.gridItems.length < this.channels.length"
+        >
+          <v-btn @click="loadMore">Load More</v-btn></v-container
+        ></v-col
+      >
+    </v-row>
   </div>
 
   <v-container></v-container>
@@ -205,7 +212,7 @@ export default {
     dialogProfile: {},
     gridItems: [],
     gridIndex: 0,
-    gridBatchSize: 6,
+    gridBatchSize: 4,
   }),
   methods: {
     getData: function () {
@@ -282,6 +289,7 @@ export default {
       });
     },
   },
+  watch: {},
 };
 </script>
 <style></style>
