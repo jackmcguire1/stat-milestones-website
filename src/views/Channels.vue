@@ -107,6 +107,7 @@
   <div v-if="displayChannelsFormat == 'grid'">
     <v-row no-gutters>
       <v-col
+        align="center"
         cols="4"
         v-for="channel in sortedGrid"
         :key="channel.broadcaster_name"

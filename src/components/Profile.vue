@@ -23,7 +23,7 @@
         }"
         class="fill-height"
       >
-        <v-card outlined>
+        <v-card rounded>
           <v-toolbar
             :color="channel.configuration.panel_settings.background_colour"
             elevation="4"
@@ -55,10 +55,10 @@
           <v-card-title
             >{{ channel.game_name }}
             <v-card-subtitle>
-              <v-spacer></v-spacer>
-              <v-spacer></v-spacer>
-              Last Updated:
-              <b>{{ channel.updated_date }}</b>
+              <strong>
+                Last Updated:
+                {{ channel.updated_date }}</strong
+              >
             </v-card-subtitle>
           </v-card-title>
 
@@ -124,18 +124,31 @@
                   channel.configuration.motd.msg == ''
                 "
               >
-                {{ channel.title }}
+                <strong>
+                  {{ channel.title }}
+                </strong>
               </span>
               <span v-else>{{ channel.configuration.motd.msg }}</span>
             </v-container>
             <v-divider></v-divider>
             <v-container>
-              # Twitch Chatters: {{ channel.chatter_info.count }}
+              <strong>
+                # Twitch Chatters: {{ channel.chatter_info.count }}
+              </strong>
             </v-container>
             <v-divider></v-divider>
             <v-container>
-              Installed:
-              <b>{{ channel.created_date }}</b>
+              <strong>
+                Installed:
+                {{ channel.created_date }}
+              </strong>
+            </v-container>
+            <v-divider></v-divider>
+            <v-container>
+              <strong>
+                Last Updated:
+                {{ channel.updated_date }}
+              </strong>
             </v-container>
           </v-card-text>
         </v-card>
@@ -171,4 +184,8 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.v-card {
+  background: black;
+}
+</style>
