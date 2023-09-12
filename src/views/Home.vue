@@ -176,7 +176,8 @@
     </v-carousel-item>
   </v-carousel>
 
-  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
+  <Channels></Channels>
+
   <v-container justify="center">
     <v-btn
       block
@@ -219,7 +220,6 @@
     </v-btn></v-container
   >
   <v-divider></v-divider>
-  <Channels></Channels>
 </template>
 
 <script>
