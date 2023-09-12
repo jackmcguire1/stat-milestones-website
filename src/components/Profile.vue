@@ -86,7 +86,7 @@
 
                 <v-container></v-container>
 
-                <v-container>
+                <v-container fluid>
                   <iframe
                     @load="load"
                     v-show="iframe.loaded"
@@ -108,8 +108,9 @@
                       })
                     "
                     allowfullscreen
-                    width="100%"
-                    height="100%"
+                    :width="iFrameWidth"
+                    :height="iFrameHeight"
+                    :style="this.display ? '' : 'pointer-events: none'"
                   >
                   </iframe>
                 </v-container>
@@ -184,25 +185,17 @@ export default {
     cardHeight: function () {
       return this.display ? "auto" : "850px";
     },
+    iFrameHeight: function () {
+      return this.display ? "500px" : "300px";
+    },
+    iFrameWidth: function () {
+      return this.display ? "85%" : "50%";
+    },
   },
 };
 </script>
 <style scoped>
 .v-card {
   background: black;
-}
-
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-}
-.h_iframe iframe {
-  width: 100%;
-  height: 100%;
-}
-.h_iframe {
-  height: 100%;
-  width: 100%;
 }
 </style>
