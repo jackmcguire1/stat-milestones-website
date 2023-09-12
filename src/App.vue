@@ -147,6 +147,10 @@ export default {
       this.$gtag.event("click", { event_label: "playground" });
       window.open("/playground", "_self");
     },
+    openExtAnalytics() {
+      this.$gtag.event("click", { event_label: "analytics" });
+      window.open("/analytics", "_self");
+    },
     openHome() {
       this.$gtag.event("click", { event_label: "home" });
       window.open("/", "_self");

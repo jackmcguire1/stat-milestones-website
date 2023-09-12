@@ -190,6 +190,8 @@
     </v-btn></v-container
   >
 
+  <Analytics></Analytics>
+  <v-container></v-container>
   <Playground></Playground>
   <v-divider></v-divider>
   <Channels></Channels>
@@ -210,11 +212,12 @@ import bits_img from "@/assets/bits.gif";
 import charity_img from "@/assets/charity.jpeg";
 
 import Channels from "@/views/Channels.vue";
+import Analytics from "@/views/Analytics.vue";
 import Playground from "@/views/Playground.vue";
 
 export default {
   name: "Home",
-  components: { Channels, Playground },
+  components: { Channels, Playground, Analytics },
   mounted() {},
   data: () => ({
     twitch_bits_logo: bits_img,

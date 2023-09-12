@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Channels from '../views/Channels.vue'
 import Playground from '../views/Playground.vue'
+import Analytics from '../views/Analytics.vue'
 import Home from '../views/Home.vue'
 
 const routes = [
@@ -18,6 +19,11 @@ const routes = [
     path: '/playground',
     name: 'Playground',
     component: Playground
+  },
+  {
+    path: '/analytics',
+    name: 'Analytics',
+    component: Analytics
   }
 ]
 
