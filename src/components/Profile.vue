@@ -73,7 +73,7 @@
                 <v-container
                   align="center"
                   justify="center"
-                  v-if="!iframe.loaded && display"
+                  v-if="!iframe.loaded"
                 >
                   <v-progress-circular
                     :size="30"
