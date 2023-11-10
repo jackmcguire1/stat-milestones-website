@@ -135,29 +135,34 @@
     </v-row>
   </div>
   <div v-if="displayChannelsFormat == 'list'">
-    <v-infinite-scroll :items="sortedGrid">
-      <template v-for="channel in sortedGrid" :key="channel.broadcaster_name">
-        <v-container
-          @click="
-            dialogProfile = channel;
-            displayProfile = true;
-          "
-          :style="'cursor: pointer;'"
-        >
-          <Profile :channel="channel" :show="show" :display="true"></Profile>
-        </v-container>
-        <v-container></v-container>
+    <v-text-field
+      v-model="search"
+      clearable
+      density="comfortable"
+      hide-details
+      placeholder="Search"
+      prepend-inner-icon="mdi-magnify"
+      style="max-width: 300px"
+      variant="solo"
+    ></v-text-field>
+
+    <v-data-iterator
+      :items="sortedChannels"
+      :items-per-page="listItemPage"
+      :search="search"
+    >
+      <template v-slot:default="{ items }">
+        <template v-for="item in items" :key="item.broadcaster_name">
+          <Profile :channel="item.raw" :show="show" :display="true"></Profile>
+        </template>
       </template>
-    </v-infinite-scroll>
-    <v-row align="center">
-      <v-col>
-        <v-container
-          v-if="loadedChannels && this.gridItems.length < this.channels.length"
-        >
-          <v-btn @click="loadMore">Load More</v-btn></v-container
-        ></v-col
-      >
-    </v-row>
+    </v-data-iterator>
+
+    <v-container
+      v-if="loadedChannels && this.listItemPage < this.channels.length"
+    >
+      <v-btn @click="listItemPage += 10">Load More</v-btn></v-container
+    >
   </div>
 
   <v-container></v-container>
@@ -213,6 +218,8 @@ export default {
     gridItems: [],
     gridIndex: 0,
     gridBatchSize: 4,
+    search: "",
+    listItemPage: 10,
   }),
   methods: {
     getData: function () {
