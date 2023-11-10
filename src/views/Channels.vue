@@ -102,7 +102,8 @@
   <div v-if="displayChannelsFormat == 'grid'">
     <v-container align="center">
       <v-row>
-        <v-col>
+        <v-col></v-col>
+        <v-col md="4" class="pa-3 d-flex flex-column">
           <v-text-field
             v-model="search"
             clearable
@@ -112,7 +113,7 @@
           ></v-text-field>
         </v-col>
 
-        <v-col>
+        <v-col md="4" class="pa-3 d-flex flex-column">
           <v-select
             align="center"
             :items="['chatter_info.count', 'created_date', 'updated_date']"
@@ -120,6 +121,7 @@
             v-model="selectedSortOption"
           ></v-select
         ></v-col>
+        <v-col></v-col>
       </v-row>
     </v-container>
 
@@ -168,7 +170,8 @@
   <div v-if="displayChannelsFormat == 'list'">
     <v-container align="center">
       <v-row>
-        <v-col>
+        <v-col></v-col>
+        <v-col md="4" class="pa-3 d-flex flex-column">
           <v-text-field
             v-model="search"
             clearable
@@ -178,7 +181,7 @@
           ></v-text-field>
         </v-col>
 
-        <v-col>
+        <v-col md="4" class="pa-3 d-flex flex-column">
           <v-select
             align="center"
             :items="['chatter_info.count', 'created_date', 'updated_date']"
@@ -186,6 +189,7 @@
             v-model="selectedSortOption"
           ></v-select
         ></v-col>
+        <v-col></v-col>
       </v-row>
     </v-container>
 
