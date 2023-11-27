@@ -36,7 +36,7 @@
 
   <v-divider></v-divider>
   <v-toolbar rounded color="deep-purple-accent-3">
-    <v-toolbar-title color="white">FEATURES</v-toolbar-title>
+    <v-toolbar-title color="white">Extension User Metrics</v-toolbar-title>
   </v-toolbar>
 
   <v-container>
@@ -53,11 +53,12 @@
       :targetNumber="193"
       :animationDuration="3000"
       :animationIncr="5"
-      :title="'Installs in the last 30 days'"
+      :title="`Installs in the last 30 days`"
     />
   </v-container>
 
-  <v-container></v-container>
+  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
+
   <v-toolbar rounded color="deep-purple-accent-3">
     <v-toolbar-title color="white">FEATURES</v-toolbar-title>
   </v-toolbar>
@@ -245,7 +246,6 @@
 </template>
 
 <script>
-import AnimatedNumber from "@/components/AnimatedNumber.vue";
 import twitch_goal_img from "@/assets/twitchgoal.png";
 import followers2_img from "@/assets/followers2.png";
 import achieved_followers_img from "@/assets/achievedfollowers.png";
@@ -262,10 +262,10 @@ import charity_img from "@/assets/charity.jpeg";
 import Channels from "@/views/Channels.vue";
 import Analytics from "@/views/Analytics.vue";
 import Playground from "@/views/Playground.vue";
-
+import AnimatedNumber from "@/components/AnimatedNumber.vue";
 export default {
   name: "Home",
-  components: { Channels, Playground, Analytics },
+  components: { Channels, Playground, Analytics, AnimatedNumber },
   mounted() {},
   data: () => ({
     twitch_bits_logo: bits_img,
