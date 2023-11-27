@@ -39,6 +39,28 @@
     <v-toolbar-title color="white">FEATURES</v-toolbar-title>
   </v-toolbar>
 
+  <v-container>
+    <AnimatedNumber
+      :targetNumber="24031"
+      :animationDuration="1000"
+      :animationIncr="35"
+      :title="'Total Users'"
+    />
+  </v-container>
+
+  <v-container>
+    <AnimatedNumber
+      :targetNumber="193"
+      :animationDuration="3000"
+      :animationIncr="5"
+      :title="'Installs in the last 30 days'"
+    />
+  </v-container>
+
+  <v-container></v-container>
+  <v-toolbar rounded color="deep-purple-accent-3">
+    <v-toolbar-title color="white">FEATURES</v-toolbar-title>
+  </v-toolbar>
   <v-container></v-container>
   <v-carousel
     continous
@@ -223,6 +245,7 @@
 </template>
 
 <script>
+import AnimatedNumber from "@/components/AnimatedNumber.vue";
 import twitch_goal_img from "@/assets/twitchgoal.png";
 import followers2_img from "@/assets/followers2.png";
 import achieved_followers_img from "@/assets/achievedfollowers.png";
