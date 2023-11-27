@@ -18,17 +18,26 @@
         <v-col>
           <AnimatedNumber
             :targetNumber="totalInstallsLastThirtyDays"
-            :animationDuration="3000"
-            :animationIncr="5"
+            :animationDuration="10000"
+            :animationIncr="1"
             :title="`Installs in the last 30 days`"
           />
         </v-col>
 
         <v-col>
           <AnimatedNumber
+            :targetNumber="totalUpdatesLastThirtyDays"
+            :animationDuration="10000"
+            :animationIncr="1"
+            :title="`Updates in the last 30 days`"
+          />
+        </v-col>
+
+        <v-col>
+          <AnimatedNumber
             :targetNumber="channels.length"
-            :animationDuration="3000"
-            :animationIncr="5"
+            :animationDuration="10000"
+            :animationIncr="1"
             :title="`Total Live Streamers`"
           />
         </v-col>
@@ -334,6 +343,7 @@ export default {
     listItemPage: 10,
     totalUsers: 0,
     totalInstallsLastThirtyDays: 0,
+    totalUpdatesLastThirtyDays: 0,
     totalStreamers: 0,
   }),
   methods: {
@@ -351,6 +361,8 @@ export default {
           this.totalInstallsLastThirtyDays =
             response.data.userMetrics.totalInstallsLastThirtyDays;
           this.totalUsers = response.data.userMetrics.totalUsers;
+          this.totalUpdatesLastThirtyDays = response.data.userMetrics
+            .totalUpdatesLastThirtyDays;
           this.totalStreamers = response.data.total;
         });
     },
