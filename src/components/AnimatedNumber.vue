@@ -1,14 +1,15 @@
 <template>
-  <v-card class="mx-auto my-8" max-width="344" elevation="16">
+  <v-card class="mx-auto my-8" max-width="344" rounded elevation="16">
     <v-card-item>
-      <v-card-title> {{ title }} </v-card-title>
-      <v-card-subtitle> Total Users </v-card-subtitle>
+      <v-card-title> {{ title }} <v-container></v-container></v-card-title>
     </v-card-item>
 
     <v-card-text class="text-h2">
       <span class="animated-number">{{ animatedNumber.toLocaleString() }}</span>
+      <v-container></v-container>
     </v-card-text>
   </v-card>
+
 </template>
 
 <script>

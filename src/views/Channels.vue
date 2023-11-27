@@ -1,5 +1,71 @@
 <template>
   <v-toolbar rounded color="deep-purple-accent-3">
+    <v-toolbar-title color="white">Extension User Metrics</v-toolbar-title>
+  </v-toolbar>
+
+  <div v-if="totalUsers > 0">
+    <v-container>
+      <v-row>
+        <v-col>
+          <AnimatedNumber
+            :targetNumber="totalUsers"
+            :animationDuration="1000"
+            :animationIncr="35"
+            :title="'Total Users'"
+          />
+        </v-col>
+
+        <v-col>
+          <AnimatedNumber
+            :targetNumber="totalUsersLastThirtyDays"
+            :animationDuration="3000"
+            :animationIncr="5"
+            :title="`Installs in the last 30 days`"
+          />
+        </v-col>
+
+        <v-col>
+          <AnimatedNumber
+            :targetNumber="channels.length"
+            :animationDuration="3000"
+            :animationIncr="5"
+            :title="`Total Live Streamers`"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
+
+  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
+  
+  <v-container align="center" justify="center" v-if="!loadedChannels">
+    <v-progress-circular
+      :size="70"
+      :width="7"
+      color="deep-purple-accent-3"
+      indeterminate
+      @mouseover="
+        this.$gtag.event('hover', {
+          event_label: 'channels_loading_progress',
+          event_category: 'user_impatience',
+        })
+      "
+    ></v-progress-circular>
+    Loading Extension User Metrics
+  </v-container>
+  <v-container justify="center">
+    <v-btn
+      block
+      large
+      color="white"
+      :style="'{font:white}'"
+      @click="installExtension"
+    >
+      Install Extension
+      <v-icon right dark> mdi-cloud-upload </v-icon>
+    </v-btn></v-container
+  >
+  <v-toolbar rounded color="deep-purple-accent-3">
     <v-toolbar-title color="white">LIVE TWITCH CHANNELS</v-toolbar-title>
   </v-toolbar>
   <v-snackbar
@@ -238,13 +304,15 @@
 </template>
 <script>
 import Profile from "@/components/Profile.vue";
+import AnimatedNumber from "@/components/AnimatedNumber.vue";
+
 import axios from "axios";
 
 const pageSize = 10;
 
 export default {
   name: "Channels",
-  components: { Profile },
+  components: { Profile, AnimatedNumber },
   mounted() {
     this.getData();
   },
@@ -264,6 +332,9 @@ export default {
     dialogProfile: {},
     search: "",
     listItemPage: 10,
+    totalUsers: 0,
+    totalUsersLastThirtyDays: 0,
+    totalStreamers: 0,
   }),
   methods: {
     getData: function () {
@@ -277,6 +348,10 @@ export default {
           this.snackbar.show = true;
           this.currentSlide = 1;
           this.totalChannelsCount = response.data.channels.length;
+          this.totalUsersLastThirtyDays =
+            response.data.userMetrics.totalUsersLastThirtyDays;
+          this.totalUsers = response.data.userMetrics.totalUsers;
+          this.totalStreamers = response.data.total;
         });
     },
     getPropertyValue: function (object, propertyPath) {

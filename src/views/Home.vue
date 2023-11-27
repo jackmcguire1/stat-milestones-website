@@ -35,40 +35,6 @@
   >
 
   <v-divider></v-divider>
-  <v-toolbar rounded color="deep-purple-accent-3">
-    <v-toolbar-title color="white">Extension User Metrics</v-toolbar-title>
-  </v-toolbar>
-
-  <v-container>
-    <AnimatedNumber
-      :targetNumber="24031"
-      :animationDuration="1000"
-      :animationIncr="35"
-      :title="'Total Users'"
-    />
-
-    <AnimatedNumber
-      :targetNumber="193"
-      :animationDuration="3000"
-      :animationIncr="5"
-      :title="`Installs in the last 30 days`"
-    />
-  </v-container>
-
-  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
-
-  <v-container justify="center">
-    <v-btn
-      block
-      large
-      color="white"
-      :style="'{font:white}'"
-      @click="installExtension"
-    >
-      Install Extension
-      <v-icon right dark> mdi-cloud-upload </v-icon>
-    </v-btn></v-container
-  >
 
   <v-toolbar rounded color="deep-purple-accent-3">
     <v-toolbar-title color="white">FEATURES</v-toolbar-title>
