@@ -17,7 +17,7 @@
 
         <v-col>
           <AnimatedNumber
-            :targetNumber="totalUsersLastThirtyDays"
+            :targetNumber="totalInstallsLastThirtyDays"
             :animationDuration="3000"
             :animationIncr="5"
             :title="`Installs in the last 30 days`"
@@ -333,7 +333,7 @@ export default {
     search: "",
     listItemPage: 10,
     totalUsers: 0,
-    totalUsersLastThirtyDays: 0,
+    totalInstallsLastThirtyDays: 0,
     totalStreamers: 0,
   }),
   methods: {
@@ -348,8 +348,8 @@ export default {
           this.snackbar.show = true;
           this.currentSlide = 1;
           this.totalChannelsCount = response.data.channels.length;
-          this.totalUsersLastThirtyDays =
-            response.data.userMetrics.totalUsersLastThirtyDays;
+          this.totalInstallsLastThirtyDays =
+            response.data.userMetrics.totalInstallsLastThirtyDays;
           this.totalUsers = response.data.userMetrics.totalUsers;
           this.totalStreamers = response.data.total;
         });
