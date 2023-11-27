@@ -3,50 +3,6 @@
     <v-toolbar-title color="white">Extension User Metrics</v-toolbar-title>
   </v-toolbar>
 
-  <div v-if="totalUsers > 0">
-    <v-container>
-      <v-row>
-        <v-col>
-          <AnimatedNumber
-            :targetNumber="totalUsers"
-            :animationDuration="1000"
-            :animationIncr="35"
-            :title="'Total Users'"
-          />
-        </v-col>
-
-        <v-col>
-          <AnimatedNumber
-            :targetNumber="totalInstallsLastThirtyDays"
-            :animationDuration="3000"
-            :animationIncr="1"
-            :title="`Installs in the last 30 days`"
-          />
-        </v-col>
-
-        <v-col>
-          <AnimatedNumber
-            :targetNumber="totalUpdatesLastThirtyDays"
-            :animationDuration="3000"
-            :animationIncr="1"
-            :title="`Updates in the last 30 days`"
-          />
-        </v-col>
-
-        <v-col>
-          <AnimatedNumber
-            :targetNumber="channels.length"
-            :animationDuration="3500"
-            :animationIncr="1"
-            :title="`Total Live Streamers`"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
-
-  <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
-  
   <v-container align="center" justify="center" v-if="!loadedChannels">
     <v-progress-circular
       :size="70"
@@ -62,6 +18,61 @@
     ></v-progress-circular>
     Loading Extension User Metrics
   </v-container>
+  
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-skeleton-loader :loading="!loadedChannels" type="card">
+          <AnimatedNumber
+            :targetNumber="totalUsers"
+            :animationDuration="1000"
+            :animationIncr="35"
+            :title="'Total Users'"
+          />
+        </v-skeleton-loader>
+      </v-col>
+
+      <v-col>
+        <v-skeleton-loader :loading="!loadedChannels" type="card">
+          <AnimatedNumber
+            :targetNumber="totalInstallsLastThirtyDays"
+            :animationDuration="3000"
+            :animationIncr="1"
+            :title="`Installs in the last 30 days`"
+          />
+        </v-skeleton-loader>
+      </v-col>
+
+      <v-col>
+        <v-skeleton-loader :loading="!loadedChannels" type="card">
+          <AnimatedNumber
+            :targetNumber="totalUpdatesLastThirtyDays"
+            :animationDuration="3000"
+            :animationIncr="1"
+            :title="`Updates in the last 30 days`"
+          />
+        </v-skeleton-loader>
+      </v-col>
+
+      <v-col>
+        <v-skeleton-loader :loading="!loadedChannels" boilerplate type="card">
+          <AnimatedNumber
+            :targetNumber="channels.length"
+            :animationDuration="3500"
+            :animationIncr="1"
+            :title="`Total Live Streamers`"
+          />
+        </v-skeleton-loader>
+      </v-col>
+    </v-row>
+  </v-container>
+
+  <v-toolbar
+    v-if="loadedChannels"
+    rounded
+    color="deep-purple-accent-3"
+  ></v-toolbar>
+
   <v-container justify="center">
     <v-btn
       block
@@ -361,8 +372,8 @@ export default {
           this.totalInstallsLastThirtyDays =
             response.data.userMetrics.totalInstallsLastThirtyDays;
           this.totalUsers = response.data.userMetrics.totalUsers;
-          this.totalUpdatesLastThirtyDays = response.data.userMetrics
-            .totalUpdatesLastThirtyDays;
+          this.totalUpdatesLastThirtyDays =
+            response.data.userMetrics.totalUpdatesLastThirtyDays;
           this.totalStreamers = response.data.total;
         });
     },
