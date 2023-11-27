@@ -33,12 +33,13 @@
   </v-snackbar>
 
   <v-container>
-    <v-select
-      align="center"
-      :items="['chatter_info.count', 'created_date', 'updated_date']"
-      label="Sort By"
-      v-model="selectedSortOption"
-    ></v-select>
+    <v-card>
+      <template v-slot:title>
+        Twitch Streamers Online: {{ channels.length }}
+      </template>
+    </v-card>
+
+    <v-container></v-container>
 
     <v-btn-toggle
       v-model="displayChannelsFormat"
@@ -49,18 +50,12 @@
     >
       <v-btn value="carousel"> Carousel </v-btn>
 
-      <v-btn value="grid"> Grid </v-btn>
+      <v-btn value="grid" @click="listItemPage = 3"> Grid </v-btn>
 
-      <v-btn value="list"> List </v-btn>
+      <v-btn value="list" @click="listItemPage = 5"> List </v-btn>
     </v-btn-toggle>
 
     <v-container></v-container>
-
-    <v-card>
-      <template v-slot:title>
-        Twitch Streamers Online: {{ channels.length }}
-      </template>
-    </v-card>
   </v-container>
 
   <v-container align="center" justify="center" v-if="!loadedChannels">
@@ -105,59 +100,116 @@
     </v-carousel>
   </div>
   <div v-if="displayChannelsFormat == 'grid'">
-    <v-row class="ma-2">
-      <v-col
-        md="4"
-        class="pa-3 d-flex flex-column"
-        v-for="channel in sortedGrid"
-        :key="channel.broadcaster_name"
-      >
-        <v-container
-          @click="
-            dialogProfile = channel;
-            displayProfile = true;
-          "
-          :style="'cursor: pointer;'"
-        >
-          <Profile :channel="channel" :show="show" :display="false"></Profile>
-        </v-container>
-      </v-col>
-      <v-col></v-col>
-    </v-row>
+    <v-container align="center">
+      <v-row>
+        <v-col></v-col>
+        <v-col md="4" class="pa-3 d-flex flex-column">
+          <v-text-field
+            v-model="search"
+            clearable
+            placeholder="Search"
+            prepend-inner-icon="mdi-magnify"
+            style="max-width: 300px"
+          ></v-text-field>
+        </v-col>
+
+        <v-col md="4" class="pa-3 d-flex flex-column">
+          <v-select
+            align="center"
+            :items="['chatter_info.count', 'created_date', 'updated_date']"
+            label="Sort By"
+            v-model="selectedSortOption"
+          ></v-select
+        ></v-col>
+        <v-col></v-col>
+      </v-row>
+    </v-container>
+
+    <v-data-iterator
+      :items="sortedChannels"
+      :items-per-page="listItemPage"
+      :search="search"
+    >
+      <template v-slot:default="{ items }">
+        <v-row class="ma-2">
+          <v-col
+            md="4"
+            class="pa-3 d-flex flex-column"
+            v-for="item in items"
+            :key="item.raw.broadcaster_name"
+          >
+            <v-container
+              @click="
+                dialogProfile = item.raw;
+                displayProfile = true;
+              "
+              :style="'cursor: pointer;'"
+            >
+              <Profile
+                :channel="item.raw"
+                :show="show"
+                :display="false"
+              ></Profile>
+            </v-container>
+          </v-col>
+          <v-col></v-col>
+        </v-row>
+      </template>
+    </v-data-iterator>
+
     <v-row align="center">
       <v-col>
         <v-container
-          v-if="loadedChannels && this.gridItems.length < this.channels.length"
+          v-if="loadedChannels && this.listItemPage < this.channels.length"
         >
-          <v-btn @click="loadMore">Load More</v-btn></v-container
-        ></v-col
-      >
+          <v-btn @click="listItemPage += 3">Load More</v-btn></v-container
+        >
+      </v-col>
     </v-row>
   </div>
   <div v-if="displayChannelsFormat == 'list'">
-    <v-infinite-scroll :items="sortedGrid">
-      <template v-for="channel in sortedGrid" :key="channel.broadcaster_name">
-        <v-container
-          @click="
-            dialogProfile = channel;
-            displayProfile = true;
-          "
-          :style="'cursor: pointer;'"
-        >
-          <Profile :channel="channel" :show="show" :display="true"></Profile>
-        </v-container>
-        <v-container></v-container>
+    <v-container align="center">
+      <v-row>
+        <v-col></v-col>
+        <v-col md="4" class="pa-3 d-flex flex-column">
+          <v-text-field
+            v-model="search"
+            clearable
+            placeholder="Search"
+            prepend-inner-icon="mdi-magnify"
+            style="max-width: 300px"
+          ></v-text-field>
+        </v-col>
+
+        <v-col md="4" class="pa-3 d-flex flex-column">
+          <v-select
+            align="center"
+            :items="['chatter_info.count', 'created_date', 'updated_date']"
+            label="Sort By"
+            v-model="selectedSortOption"
+          ></v-select
+        ></v-col>
+        <v-col></v-col>
+      </v-row>
+    </v-container>
+
+    <v-data-iterator
+      :items="sortedChannels"
+      :items-per-page="listItemPage"
+      :search="search"
+    >
+      <template v-slot:default="{ items }">
+        <template v-for="item in items" :key="item.broadcaster_name">
+          <Profile :channel="item.raw" :show="show" :display="true"></Profile>
+        </template>
       </template>
-    </v-infinite-scroll>
-    <v-row align="center">
-      <v-col>
-        <v-container
-          v-if="loadedChannels && this.gridItems.length < this.channels.length"
-        >
-          <v-btn @click="loadMore">Load More</v-btn></v-container
-        ></v-col
-      >
-    </v-row>
+    </v-data-iterator>
+
+    <v-container
+      v-if="loadedChannels && this.listItemPage < this.channels.length"
+    >
+      <v-btn @click="listItemPage += 10">Load More</v-btn></v-container
+    >
   </div>
 
   <v-container></v-container>
@@ -210,9 +262,8 @@ export default {
     selectedSortOption: "updated_date", // Set an initial sorting option
     displayProfile: false,
     dialogProfile: {},
-    gridItems: [],
-    gridIndex: 0,
-    gridBatchSize: 4,
+    search: "",
+    listItemPage: 10,
   }),
   methods: {
     getData: function () {
@@ -226,8 +277,6 @@ export default {
           this.snackbar.show = true;
           this.currentSlide = 1;
           this.totalChannelsCount = response.data.channels.length;
-          this.gridItems.push(...this.channels.slice(0, this.gridBatchSize));
-          this.gridIndex = this.gridBatchSize;
         });
     },
     getPropertyValue: function (object, propertyPath) {
@@ -247,34 +296,10 @@ export default {
         "_blank"
       );
     },
-    loadMore() {
-      this.gridItems.push(
-        ...this.channels.slice(
-          this.gridIndex,
-          this.gridIndex + this.gridBatchSize
-        )
-      );
-      this.gridIndex += this.gridBatchSize;
-    },
   },
   computed: {
     sortedChannels() {
       const channelsCopy = [...this.channels]; // Make a copy of the channels array
-      return channelsCopy.sort((a, b) => {
-        const valueA = this.getPropertyValue(a, this.selectedSortOption);
-        const valueB = this.getPropertyValue(b, this.selectedSortOption);
-        // Compare the values based on the selected sorting option
-        if (valueA > valueB) {
-          return -1;
-        }
-        if (valueA < valueB) {
-          return 1;
-        }
-        return 0;
-      });
-    },
-    sortedGrid() {
-      const channelsCopy = [...this.gridItems]; // Make a copy of the channels array
       return channelsCopy.sort((a, b) => {
         const valueA = this.getPropertyValue(a, this.selectedSortOption);
         const valueB = this.getPropertyValue(b, this.selectedSortOption);

@@ -82,6 +82,12 @@
                     indeterminate
                   ></v-progress-circular>
                   Loading Twitch Video...
+
+                  <v-skeleton-loader
+                    :loading="!iframe.loaded"
+                    :elevation="24"
+                    type="image"
+                  ></v-skeleton-loader>
                 </v-container>
 
                 <v-container></v-container>
