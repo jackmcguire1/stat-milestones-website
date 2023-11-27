@@ -65,6 +65,8 @@ export default {
 }
 
 .v-card {
+  font: black;
   background: white;
 }
+
 </style>

@@ -46,9 +46,7 @@
       :animationIncr="35"
       :title="'Total Users'"
     />
-  </v-container>
 
-  <v-container>
     <AnimatedNumber
       :targetNumber="193"
       :animationDuration="3000"
