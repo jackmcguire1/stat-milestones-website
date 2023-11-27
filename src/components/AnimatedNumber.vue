@@ -1,9 +1,13 @@
 <template>
-  <v-card>
-    <v-card-title class="headline">
-      {{ title }}:
+  <v-card class="mx-auto my-8" max-width="344" elevation="16">
+    <v-card-item>
+      <v-card-title> {{ title }} </v-card-title>
+      <v-card-subtitle> Total Users </v-card-subtitle>
+    </v-card-item>
+
+    <v-card-text class="text-h2">
       <span class="animated-number">{{ animatedNumber.toLocaleString() }}</span>
-    </v-card-title>
+    </v-card-text>
   </v-card>
 </template>
 
@@ -58,5 +62,9 @@ export default {
 .animated-number {
   color: #4caf50; /* or any color you prefer */
   font-weight: bold;
+}
+
+.v-card {
+  background: white;
 }
 </style>

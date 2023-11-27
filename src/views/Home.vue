@@ -59,6 +59,19 @@
 
   <v-toolbar rounded color="deep-purple-accent-3"></v-toolbar>
 
+  <v-container justify="center">
+    <v-btn
+      block
+      large
+      color="white"
+      :style="'{font:white}'"
+      @click="installExtension"
+    >
+      Install Extension
+      <v-icon right dark> mdi-cloud-upload </v-icon>
+    </v-btn></v-container
+  >
+
   <v-toolbar rounded color="deep-purple-accent-3">
     <v-toolbar-title color="white">FEATURES</v-toolbar-title>
   </v-toolbar>
