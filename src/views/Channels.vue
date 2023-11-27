@@ -18,7 +18,7 @@
         <v-col>
           <AnimatedNumber
             :targetNumber="totalInstallsLastThirtyDays"
-            :animationDuration="10000"
+            :animationDuration="3000"
             :animationIncr="1"
             :title="`Installs in the last 30 days`"
           />
@@ -27,7 +27,7 @@
         <v-col>
           <AnimatedNumber
             :targetNumber="totalUpdatesLastThirtyDays"
-            :animationDuration="10000"
+            :animationDuration="3000"
             :animationIncr="1"
             :title="`Updates in the last 30 days`"
           />
@@ -36,7 +36,7 @@
         <v-col>
           <AnimatedNumber
             :targetNumber="channels.length"
-            :animationDuration="10000"
+            :animationDuration="3500"
             :animationIncr="1"
             :title="`Total Live Streamers`"
           />
