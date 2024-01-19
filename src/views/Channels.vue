@@ -18,7 +18,7 @@
     ></v-progress-circular>
     Loading Extension User Metrics
   </v-container>
-  
+
   <v-container>
     <v-row>
       <v-col>
@@ -190,13 +190,13 @@
       <v-row>
         <v-col></v-col>
         <v-col md="4" class="pa-3 d-flex flex-column">
-          <v-text-field
-            v-model="search"
+          <v-combobox
             clearable
-            placeholder="Search"
+            label="Search for Twitch Streams by..."
+            v-model="search"
+            :items="gamesList"
             prepend-inner-icon="mdi-magnify"
-            style="max-width: 300px"
-          ></v-text-field>
+          ></v-combobox>
         </v-col>
 
         <v-col md="4" class="pa-3 d-flex flex-column">
@@ -258,15 +258,14 @@
       <v-row>
         <v-col></v-col>
         <v-col md="4" class="pa-3 d-flex flex-column">
-          <v-text-field
-            v-model="search"
+          <v-combobox
             clearable
-            placeholder="Search"
+            label="Search for Twitch Streams by..."
+            v-model="search"
+            :items="gamesList"
             prepend-inner-icon="mdi-magnify"
-            style="max-width: 300px"
-          ></v-text-field>
-        </v-col>
-
+          ></v-combobox
+        ></v-col>
         <v-col md="4" class="pa-3 d-flex flex-column">
           <v-select
             align="center"
@@ -356,6 +355,7 @@ export default {
     totalInstallsLastThirtyDays: 0,
     totalUpdatesLastThirtyDays: 0,
     totalStreamers: 0,
+    gamesList: [],
   }),
   methods: {
     getData: function () {
@@ -375,6 +375,7 @@ export default {
           this.totalUpdatesLastThirtyDays =
             response.data.userMetrics.totalUpdatesLastThirtyDays;
           this.totalStreamers = response.data.total;
+          this.getUserGames();
         });
     },
     getPropertyValue: function (object, propertyPath) {
@@ -393,6 +394,18 @@ export default {
         "https://dashboard.twitch.tv/extensions/e93cf8730nd11z7gepkly2gry5kv8k",
         "_blank"
       );
+    },
+    getUserGames(jsonData) {
+      if (this.channels.length > 0) {
+        this.channels.forEach((channel) => {
+          if (
+            channel.game_name &&
+            !this.gamesList.includes(channel.game_name)
+          ) {
+            this.gamesList.push(channel.game_name);
+          }
+        });
+      }
     },
   },
   computed: {
