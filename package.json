@@ -20,7 +20,7 @@
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.9",
+    "@babel/core": "^7.24.0",
     "@babel/eslint-parser": "^7.23.10",
     "@mdi/font": "^7.4.47",
     "@vitejs/plugin-vue": "^5.0.4",
