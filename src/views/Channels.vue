@@ -1,6 +1,6 @@
 <template>
   <v-toolbar rounded color="deep-purple-accent-3">
-    <v-toolbar-title color="white">Extension User Metrics</v-toolbar-title>
+    <v-toolbar-title color="white">EXTENSION USER METRICS</v-toolbar-title>
   </v-toolbar>
 
   <v-container align="center" justify="center" v-if="!loadedChannels">
