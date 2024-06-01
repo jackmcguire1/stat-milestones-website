@@ -9,7 +9,7 @@
     "dev": "vite"
   },
   "dependencies": {
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "core-js": "^3.37.0",
     "material-design-icons-iconfont": "^6.7.0",
     "roboto-fontface": "0.10.0",
